@@ -16,6 +16,9 @@ const Footer = () => {
                     Ut elit tellus, luctus nec 
                     ullamcorper mattis, 
                     pulvinar dapibus leo.</p>
+                <li>Address: 4710-4890 Breckinridge St, Fayettevill</li>
+                <li>Call Us: (+800) 345 678, (+800) 123 456</li>
+                <li>Email: support@domain.com</li>
             </div>
             <div>
                 <h3>Contact</h3>

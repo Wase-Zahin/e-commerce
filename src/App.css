@@ -2,3 +2,41 @@
   display: inline-flex;
   gap: 2rem;
 }
+
+.quantity {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shopImgDiv {
+  background-color: #cccccc;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem;
+}
+
+.shopImgDiv img {
+  mix-blend-mode: multiply;
+  height: 150px;
+  width: 150px;
+}
+
+.imgDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgDiv img {
+  height: 300px;
+  width: 300px;
+}
+
+.shopHeader {
+  height: fit-content;
+  width: fit-content;
+  margin: auto;
+}
