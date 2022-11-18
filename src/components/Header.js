@@ -30,6 +30,9 @@ const Header = () => {
                     <Link style={{ color: "white" }} to="/shop">
                         <div>Shop</div>
                     </Link>
+                    <Link style={{ color: "white" }} to="/cart">
+                        <div>Cart</div>
+                    </Link>
                 </div>
             </HeaderContainer>
         </HeaderWrapper>
