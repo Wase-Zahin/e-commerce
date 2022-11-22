@@ -10,7 +10,6 @@ const ShopWrapper = styled.div`
     margin: auto;
     padding: 2.5rem;
     background-color: #EAEAEA;
-
 `
 const ShopContainer = styled.main`
     display: grid;
@@ -20,7 +19,7 @@ const ShopContainer = styled.main`
     box-shadow: 2.5px 1px 5px #393E46;
 `
 
-const Item = () => {
+const Item = ({ setCart, cart }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -30,13 +29,26 @@ const Item = () => {
     const { id } = useParams();
     const [item, setItem] = useState([]);
 
+    const addToCart = () => {
+        let newItem = item;
+        // wrap the cart object into an array []
+        if (cart.length < 1) setCart([item])
+        // if item already exists increment counter
+        else if (cart.length > 0 && cart.includes(item)) {
+            item.counter += 1;
+        }
+        else (setCart(item => [...item, newItem]))
+    }
+
+
     const fetchItem = async () => {
         const data = await fetch(
             `https://fakestoreapi.com/products/${id}`
         );
 
         const item = await data.json();
-        console.log(item);
+        // initialize counter of items
+        item.counter = 1;
         setItem(item);
     }
 
@@ -50,15 +62,17 @@ const Item = () => {
                     <h1>{item.title}</h1>
                     <h2>${item.price}</h2>
                     <p>{item.description}</p>
-                    <div className="quantityDiv">
-                        <h2>Quantity</h2>
-                        <div className="quantity">
-                            <h2>-</h2>
-                            <h2>0</h2>
-                            <h2>+</h2>
+                    <div className="cartQuantityDiv">
+                        <div className="quantityDiv">
+                            <h2>Quantity</h2>
+                            <div className="quantity">
+                                <h2>-</h2>
+                                <h2>0</h2>
+                                <h2>+</h2>
+                            </div>
                         </div>
+                        <button onClick={addToCart} className="Btn">Add To Cart</button>
                     </div>
-                    <button onClick={() => dispatch(Increment())} className="Btn">Add To Cart</button>
                 </div>
             </ShopContainer>
         </ShopWrapper>

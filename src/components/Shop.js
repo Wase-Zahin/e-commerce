@@ -3,15 +3,15 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom';
 
 const ShopWrapper = styled.div`
-    height: fit-content;
-    width: fit-content;
-    margin: auto;
     padding: 2.5rem;
+    background-color: #EAEAEA;
 `
 const ShopContainer = styled.main`
     display: grid;
+    max-width: 1200px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    padding: 1.5rem;
+    margin: auto;
+    gap: 2rem;
 `
 
 const Shop = () => {
@@ -33,14 +33,19 @@ const Shop = () => {
 
     return (
         <ShopWrapper>
-            <h1 className="shopHeader">Welcome to Shop Page!</h1>
             <ShopContainer>
                 {items.map(item => (
                     <div key={item.id}>
                         <Link to={`/shop/${item.id}`}>
                             <div className="shopImgDiv">
-                                <img src={item.image} alt={item.title}></img>
-                                {item.title}
+                                <div className="img">
+                                    <img src={item.image} alt={item.title}></img>
+                                </div>
+                                <div className="titlePrice">
+                                    <h3>{item.title}</h3>
+                                    <p>${item.price}</p>
+                                </div>
+                                <button type="button" className="Btn">Add To Cart</button>
                             </div>
                         </Link>
                     </div>
