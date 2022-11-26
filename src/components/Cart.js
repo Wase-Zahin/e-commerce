@@ -1,30 +1,26 @@
 import styled from "styled-components";
 import CartItem from "./CartItem";
-import { useState, useEffect } from "react";
+import OrderSummary from "./orderSummary";
 
 const ShopWrapper = styled.div`
-    margin: auto;
-    padding: 1.5rem;
+    padding: 2rem 0;
     background-color: #EAEAEA;
+    margin: auto;
 `
 const ShopContainer = styled.main`
-    display: grid;
     margin: auto;
+    display: grid;
     max-width: 1200px;
-    grid-template-columns: auto; 
+    grid-template-columns: 2fr 1fr;
     padding: 1.5rem;
-    gap: 4rem;
+    gap: 1rem;
 `
 
 const Cart = ({ cart, setCart }) => {
-    const [total, setTotal] = useState(0);
-    useEffect(() => {
-        cartTotal();
-    }, [cart]);
-
     const cartItems = cart.map((cartItem) => {
         return (
             <CartItem
+                id={cartItem.id}
                 key={cartItem.id}
                 cart={cart}
                 setCart={setCart}
@@ -33,43 +29,19 @@ const Cart = ({ cart, setCart }) => {
         )
     })
 
-    const cartTotal = () => {
-        let total = 0;
-        cart.map((cartItem) => {
-            total += cartItem.price * cartItem.counter;
-            return setTotal(total);
-        })
-    };
-
-
     return (
         <ShopWrapper>
-            <ShopContainer>
-                <div>
-                    {cartItems}
-                </div>
-                <div className="orderSummary">
-                    <h2>ORDER SUMMARY</h2>
-                    <hr></hr>
-                    <div className="checkout">
-                        <div>
-                            <p>Item Subtotal</p>
-                            <h2>${total}</h2>
-                        </div>
-
-                        <div>
-                            <p>Shipping</p>
-                            <h2>$10</h2>
-                        </div>
-
-                        <div>
-                            <p>Estimated Subtotal</p>
-                            <h2>${total + 10}</h2>
-                        </div>
+            {cart.length > 0 ?
+                <ShopContainer>
+                    <div>
+                        {cartItems}
                     </div>
-                    <button type="button" className="Btn"> Checkout </button>
-                </div>
-            </ShopContainer>
+                    <OrderSummary cart={cart}>
+                    </OrderSummary>
+                </ShopContainer> :
+                <div className="emptyBag">
+                    <h3 className="conditionalDiv">"Your bag is empty!"</h3>
+                    </div>}
         </ShopWrapper>
     )
 }

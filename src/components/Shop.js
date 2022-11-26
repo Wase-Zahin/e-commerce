@@ -45,7 +45,7 @@ const Shop = () => {
                                     <h3>{item.title}</h3>
                                     <p>${item.price}</p>
                                 </div>
-                                <button type="button" className="Btn">Add To Cart</button>
+                                <button type="button" className="Btn">View Details</button>
                             </div>
                         </Link>
                     </div>

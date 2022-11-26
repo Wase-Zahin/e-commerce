@@ -1,27 +1,22 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from 'react-router-dom';
-import { useDispatch } from "react-redux";
-import Increment from '../actions'
 
 const ShopWrapper = styled.div`
-    height: fit-content;
-    width: fit-content;
-    margin: auto;
     padding: 2.5rem;
     background-color: #EAEAEA;
 `
 const ShopContainer = styled.main`
     display: grid;
+    margin: auto;
+    max-width: 1200px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     padding: 1.5rem;
     background-color: white;
     box-shadow: 2.5px 1px 5px #393E46;
 `
 
-const Item = ({ setCart, cart }) => {
-    const dispatch = useDispatch();
-
+const Item = ({ cart, setCart }) => {
     useEffect(() => {
         fetchItem();
     }, []);
@@ -58,21 +53,11 @@ const Item = ({ setCart, cart }) => {
                 <div className="imgDiv">
                     <img src={item.image} alt={item.title}></img>
                 </div>
-                <div>
+                <div className="item">
                     <h1>{item.title}</h1>
                     <h2>${item.price}</h2>
                     <p>{item.description}</p>
-                    <div className="cartQuantityDiv">
-                        <div className="quantityDiv">
-                            <h2>Quantity</h2>
-                            <div className="quantity">
-                                <h2>-</h2>
-                                <h2>0</h2>
-                                <h2>+</h2>
-                            </div>
-                        </div>
-                        <button onClick={addToCart} className="Btn">Add To Cart</button>
-                    </div>
+                    <button onClick={addToCart} className="Btn">Add To Cart</button>
                 </div>
             </ShopContainer>
         </ShopWrapper>

@@ -1,8 +1,17 @@
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
-        <h1>Welcome to Homepage!</h1>
+        <div className='background'>
+            <div className='mid'>
+                <h2>We're here for all <br></br>of your shopping needs!</h2>
+                <Link style={{ color: "white" }} to="/shop">
+                    <div className='box'>
+                        <h3>Shop Now</h3>
+                    </div>
+                </Link>
+            </div>
+        </div>
     )
 }
 

@@ -1,24 +1,17 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+const CartItem = ({ cartItem, cart, setCart, id }) => {
 
-const ShopWrapper = styled.div`
-    display: grid;
-    margin: auto;
-    max-width: 1200px;
-    grid-template-columns: auto; 
-    padding: 1.5rem;
-    gap: 4rem;
-    background-color: #EAEAEA;
-`
-const CartItem = ({ cartItem, cart, setCart }) => {
-
-
-    const handleInputChange = (e) => {
-
+    const handleInputChange = (e, id) => {
+        const { name, value } = e.target;
+        const newCart = cart.map((cartItem) => {
+            if (cartItem.id === id) {
+                console.log(value, cartItem.id)
+                return {...cartItem, [name]: value}
+            } else return cartItem;
+        })
+        setCart(newCart);
     }
 
     return (
-        <ShopWrapper>
             <div className="cartItems">
                 <img src={cartItem.image} alt={cartItem.title} className="pic"></img>
                 <div className="itemDetailsDiv">
@@ -40,15 +33,19 @@ const CartItem = ({ cartItem, cart, setCart }) => {
                                 type="number"
                                 name="counter"
                                 value={cartItem.counter}
-                                onChange={(e) => handleInputChange(e)}
+                                min="0"
+                                onKeyPress={(event) => {
+                                    if (!/[0-9]/.test(event.key)) {
+                                      event.preventDefault();
+                                    }
+                                  }}
+                                onChange={(e) => handleInputChange(e, id)}
                             ></input>
                         </div>
                     </div>
                 </div>
-                <hr></hr>
             </div>
 
-        </ShopWrapper>
     )
 }
 
