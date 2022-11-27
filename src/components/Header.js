@@ -30,10 +30,10 @@ const Header = () => {
                         <div>Shop</div>
                     </Link>
                     <Link style={{ color: "white" }} to="/">
-                        <img src={homeIcon}></img>
+                        <img src={homeIcon} alt='home'></img>
                     </Link>
                     <Link style={{ color: "white" }} to="/cart">
-                        <img src={cartIcon}></img>
+                        <img src={cartIcon} alt='cart'></img>
                     </Link>
                 </div>
             </HeaderContainer>
