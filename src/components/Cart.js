@@ -7,14 +7,6 @@ const ShopWrapper = styled.div`
     background-color: #EAEAEA;
     margin: auto;
 `
-const ShopContainer = styled.main`
-    margin: auto;
-    display: grid;
-    max-width: 1200px;
-    grid-template-columns: 2fr 1fr;
-    padding: 1.5rem;
-    gap: 1rem;
-`
 
 const Cart = ({ cart, setCart }) => {
     const cartItems = cart.map((cartItem) => {
@@ -32,16 +24,16 @@ const Cart = ({ cart, setCart }) => {
     return (
         <ShopWrapper>
             {cart.length > 0 ?
-                <ShopContainer>
+                <div className="cartItemsDiv">
                     <div>
                         {cartItems}
                     </div>
                     <OrderSummary cart={cart}>
                     </OrderSummary>
-                </ShopContainer> :
+                </div> :
                 <div className="emptyBag">
-                    <h3 className="conditionalDiv">"Your bag is empty!"</h3>
-                    </div>}
+                    <h3 className="conditionalDiv">Your bag is empty!</h3>
+                </div>}
         </ShopWrapper>
     )
 }
