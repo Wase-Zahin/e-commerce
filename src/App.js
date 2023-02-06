@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Item from './components/ItemDetails';
 import Cart from './components/Cart';
+import Login from './components/Login';
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -18,6 +19,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/shop' element={<Shop />} />
         <Route path='/cart' element={<Cart setCart={setCart} cart={cart} />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/shop/:id' element={<Item setCart={setCart} cart={cart} />} />
       </Routes>
       <Footer></Footer>

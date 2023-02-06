@@ -40,8 +40,69 @@ ul {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(92, 83, 83, 0.274);
+  background: rgba(255, 255, 255, 0.254);
   pointer-events: none;
+}
+
+.login-box>h1 {
+  align-self: center;
+  letter-spacing: 0.1rem;
+}
+
+.login-box {
+  /* center the login form */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  /*  */
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: fit-content;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: -4px -4px 5px rgb(160, 159, 159), 4px 4px 5px rgb(66, 66, 66);
+}
+
+.login-box input {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid rgb(97, 96, 96);
+  margin: 0.4rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.login-box input:focus {
+  border-bottom: 2px solid crimson;
+}
+
+.login-box button {
+  margin-top: 10px;
+  background: transparent;
+  border: 2px solid rgb(0, 0, 0);
+  padding: 3px 25px;
+  letter-spacing: 0.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 2rem 0.4rem 0.7rem 0.4rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.login-box>button:hover {
+  filter: brightness(90%);
+  background-color: #ffffff;
+}
+
+.login-icon {
+  align-self: center;
+  margin-bottom: 0.4rem;
+  height: 65px;
+  width: 65px;
 }
 
 .mid {

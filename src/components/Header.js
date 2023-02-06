@@ -35,6 +35,9 @@ const Header = () => {
                     <Link style={{ color: "white" }} to="/cart">
                         <img src={cartIcon} alt='cart'></img>
                     </Link>
+                    <Link style={{ color: "white"}} to="/login">
+                        <button>Login</button>
+                    </Link>
                 </div>
             </HeaderContainer>
         </HeaderWrapper>
