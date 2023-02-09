@@ -1,13 +1,23 @@
+import { useState, useEffect } from "react";
 import loginIcon from "../images/6681204.png";
+import axios from "axios";
 
 const Login = () => {
-    const onSubmit = () => {
+    const [users, setUsers] = useState([]);
 
-    }
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios.get("http://localhost:8000/api/users/");
+            setUsers(result.users);
+            console.log(users);
+        };
+
+        fetchData();
+    }, []);
     return (
         <div className='background'>
-            <form class="login-box" onSubmit={onSubmit}>
-                <img class="login-icon" src={loginIcon} alt="login-icon"/>
+            <form className="login-box">
+                <img className="login-icon" src={loginIcon} alt="login-icon" />
                 <h1>User Login</h1>
                 <input
                     v-model="username"
