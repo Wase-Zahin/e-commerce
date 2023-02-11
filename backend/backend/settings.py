@@ -72,6 +72,7 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL =  'backend_logic.CustomUser'
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 
@@ -85,7 +86,11 @@ DATABASES = {
     }
 }
 
+CSRF_TRUSTED_ORIGINS = ['http://*','http://*']
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r".*",
+]
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 

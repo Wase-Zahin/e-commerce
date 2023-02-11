@@ -38,6 +38,9 @@ const Header = () => {
                     <Link style={{ color: "white"}} to="/login">
                         <button>Login</button>
                     </Link>
+                    <Link style={{ color: "white" }} to="/signup">
+                        <button>SignUP</button>
+                    </Link>
                 </div>
             </HeaderContainer>
         </HeaderWrapper>
