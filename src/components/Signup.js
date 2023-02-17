@@ -1,87 +1,125 @@
 import { useState } from "react";
 import axios from "axios";
 import loginIcon from "../images/6681204.png";
-// axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-// axios.defaults.xsrfCookieName = "csrftoken";
-// axios.defaults.withCredentials = true
 
 const SignUp = () => {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await axios.get("http://localhost:8000/api/users/get_csrf/");
-            const csrf_token = response.data.csrf_token;
-            console.log(csrf_token)
-            await axios.post("http://localhost:8000/api/users/signup/", {
-                username,
-                email,
-                password,
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    "x-csrftoken": csrf_token,
-                    'Access-Control-Allow-Origin': 'http://localhost:8000'
-                }
-            });
-        } catch (error) {
-            console.error(error);
-        }
-    };
+  const handleSignUp = async (e) => {
+    e.preventDefault();
 
-    return (
-        <div className="background">
-            <form method="POST" onSubmit={handleSubmit} className="login-box">
-                <img className="login-icon" src={loginIcon} alt="login-icon" />
-                <h1>Sign Up</h1>
-                <input
-                    placeholder="First Name"
-                    name="firstname"
-                    id="firstname"
-                    required
-                />
+    // Retrieve the CSRF token from the cookie
+    const csrftoken = getCookie('csrftoken');
 
-                <input
-                    placeholder="Last Name"
-                    name="lastname"
-                    id="lastname"
-                    required
-                />
+    // Send a POST request to the server with the CSRF token in the headers
+    const response = await fetch("http://localhost:8000/api/users/signup/", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify({ username, email, password }),
+    });
 
-                <input
-                    value={username}
-                    onChange={(event) => setUsername(event.target.value)}
-                    placeholder="Username"
-                    name="username"
-                    id="username"
-                    required
-                />
+    // Handle the response from the server
+    const data = await response.json();
+    if (response.ok) {
+      // Success
+      setError(null);
+      console.log('User created:', data);
+    } else {
+      // Error
+      setError(data.error);
+      console.log('Error:', data.error);
+    }
+  };
 
-                <input
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    placeholder="Email"
-                    name="email"
-                    id="email"
-                    required
-                />
+  const handleFirstNameChange = (event) => {
+    setFirstName(event.target.value);
+  };
 
-                <input
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    name="password"
-                    required
-                />
-                <button type="submit">Sign Up</button>
-            </form>
-        </div>
-    );
+  const handleLastNameChange = (event) => {
+    setLastName(event.target.value);
+  };
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  return (
+    <div className="background">
+      <form method="POST" onSubmit={handleSignUp} className="login-box">
+        <img className="login-icon" src={loginIcon} alt="login-icon" />
+        <h1>Sign Up</h1>
+        <input
+          placeholder="First Name"
+          name="first_name"
+          id="first_name"
+          value={firstName}
+          onChange={handleFirstNameChange}
+          required
+        />
+
+        <input
+          placeholder="Last Name"
+          name="last_name"
+          id="last_name"
+          value={lastName}
+          onChange={handleLastNameChange}
+          required
+        />
+
+        <input
+          placeholder="Username"
+          name="username"
+          id="username"
+          value={username}
+          onChange={handleUsernameChange}
+          required
+        />
+
+        <input
+          placeholder="Email"
+          name="email"
+          id="email"
+          value={email}
+          onChange={handleEmailChange}
+          required
+        />
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          name="password"
+          value={password}
+          onChange={handlePasswordChange}
+          required
+        />
+        <button type="submit">Sign Up</button>
+        {error && <p>{error}</p>}
+      </form>
+    </div>
+  );
 };
+
+// Helper function to retrieve a cookie by name
+function getCookie(name) {
+  const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return cookieValue ? cookieValue.pop() : null;
+}
 
 export default SignUp;

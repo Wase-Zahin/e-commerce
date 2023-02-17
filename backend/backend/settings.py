@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'backend_logic',
     'corsheaders',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +75,21 @@ TEMPLATES = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'USER_ID_CLAIM': 'user_id',
+}
+
 AUTH_USER_MODEL =  'backend_logic.CustomUser'
 WSGI_APPLICATION = 'backend.wsgi.application'
 
@@ -86,11 +104,13 @@ DATABASES = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = ['http://*','http://*']
+# CSRF_COOKIE_NAME = 'the-correct-cookie-name'
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    r".*",
-]
+# CSRF_TRUSTED_ORIGINS  = ['http://localhost:3000', 'http://localhost:8000']
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',  # React default port = 3000  # Django default port = 8000
+)
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
