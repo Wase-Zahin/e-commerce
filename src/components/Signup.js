@@ -1,8 +1,9 @@
-import { useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import loginIcon from "../images/6681204.png";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -30,6 +31,7 @@ const SignUp = () => {
     const data = await response.json();
     if (response.ok) {
       // Success
+      navigate('/login');
       setError(null);
       console.log('User created:', data);
     } else {
@@ -121,5 +123,6 @@ function getCookie(name) {
   const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
   return cookieValue ? cookieValue.pop() : null;
 }
+
 
 export default SignUp;

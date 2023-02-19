@@ -15,11 +15,11 @@ const ShopContainer = styled.main`
 `
 
 const Shop = () => {
+    const [items, setItems] = useState([]);
+
     useEffect(() => {
         fetchItems();
     }, []);
-
-    const [items, setItems] = useState([]);
 
     const fetchItems = async () => {
         const data = await fetch(
@@ -28,7 +28,6 @@ const Shop = () => {
 
         const items = await data.json();
         setItems(items);
-
     }
 
     return (

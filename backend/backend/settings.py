@@ -77,8 +77,8 @@ TEMPLATES = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework.authentication.TokenAuthentication',
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
 
@@ -104,9 +104,8 @@ DATABASES = {
     }
 }
 
-# CSRF_COOKIE_NAME = 'the-correct-cookie-name'
 CORS_ORIGIN_ALLOW_ALL = True
-# CSRF_TRUSTED_ORIGINS  = ['http://localhost:3000', 'http://localhost:8000']
+CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',  # React default port = 3000  # Django default port = 8000
 )

@@ -11,7 +11,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8000/api/users/", {
+        axios.post("http://localhost:8000/api/users/login/", {
             username: username,
             password: password
         }, {
@@ -20,8 +20,9 @@ const Login = () => {
             }
         })
             .then((res) => {
+                console.log(res.data)
                 if (res.data.message === 'Login successful') {
-                    navigate.push('/home');
+                    navigate('/');
                 } else {
                     setError('Incorrect login credentials');
                 }
@@ -31,29 +32,37 @@ const Login = () => {
             });
     };
 
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
+    };
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+
     return (
         <div className="background">
             <form className="login-box" onSubmit={handleSubmit}>
                 <img className="login-icon" src={loginIcon} alt="login-icon" />
                 <h1>User Login</h1>
                 <input
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
                     placeholder="Username"
                     name="username"
                     id="username"
+                    value={username}
+                    onChange={handleUsernameChange}
                     required
                 />
                 <input
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
                     type="password"
                     id="password"
                     placeholder="Password"
                     name="password"
+                    value={password}
+                    onChange={handlePasswordChange}
                     required
                 />
-                {error && <p className="error">{error}</p>}
+                {error && <p style={{color: 'red', textAlign: 'center'}} className="error">{error}</p>}
                 <button type="submit">Login</button>
             </form>
         </div>
