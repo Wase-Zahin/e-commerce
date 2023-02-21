@@ -4,10 +4,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate();
     const [error, setError] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,20 +17,20 @@ const Login = () => {
         }, {
             headers: {
                 'Content-Type': 'application/json'
-            }
+            }, withCredentials: 'true',
         })
             .then((res) => {
                 console.log(res.data)
-                if (res.data.message === 'Login successful') {
+                if (res.data.message === 'login successful!') {
                     navigate('/');
-                } else {
-                    setError('Incorrect login credentials');
-                }
+                } 
             })
             .catch((err) => {
                 console.log(err);
+                setError(err);
             });
-    };
+        //  
+}
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -62,7 +62,7 @@ const Login = () => {
                     onChange={handlePasswordChange}
                     required
                 />
-                {error && <p style={{color: 'red', textAlign: 'center'}} className="error">{error}</p>}
+                {error && <p style={{ color: 'red', textAlign: 'center' }} className="error">{error}</p>}
                 <button type="submit">Login</button>
             </form>
         </div>

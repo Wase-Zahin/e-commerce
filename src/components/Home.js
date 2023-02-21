@@ -1,22 +1,21 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Home = () => {
-    const [loggedIn, setLoggedIn] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const checkLoggedIn = async () => {
-            const response = await fetch("http://localhost:8000/api/users/check_logged_in/");
-            const data = await response.json();
-            setLoggedIn(data.logged_in);
-        };
-        setTimeout(() => {
-            console.log(loggedIn);
-        }, 3000);
         checkLoggedIn();
-    }, [loggedIn]);
+    }, []);
+
+    const checkLoggedIn = async () => {
+        axios.get("http://localhost:8000/api/users/check_logged_in/", {
+            withCredentials: true,
+        }).then((res) => {console.log(res.data)})
+        .catch((err) => {console.log(err)});
+    };
 
     return (
         <div className='background'>
@@ -27,6 +26,7 @@ const Home = () => {
                         <h3>Shop Now</h3>
                     </div>
                 </Link>
+                <button onClick={checkLoggedIn}>check</button>
             </div>
         </div>
     )

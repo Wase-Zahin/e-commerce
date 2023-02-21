@@ -42,7 +42,8 @@ class SignUpView(viewsets.ModelViewSet):
         csrf_token = get_token(request)
         response = JsonResponse({'message': 'Success'})
         # Set the 'csrftoken' cookie in the response
-        response.set_cookie('csrftoken', csrf_token, httponly=True, samesite='Strict')
+        response.set_cookie('csrftoken', csrf_token,
+                            httponly=True, samesite='Strict')
 
         # Return the response to the client
         return response
@@ -50,27 +51,29 @@ class SignUpView(viewsets.ModelViewSet):
 
 class CheckLoggedIn(View):
     def get(self, request):
-        print('request.user:', request.user)
-        print('request.user.is_authenticated:', request.user.is_authenticated)
-        if request.user.is_authenticated:
-            return JsonResponse({'logged_in': True})
+        if request.user is not None:
+            return JsonResponse({"message": str(request.user)})
         else:
-            return JsonResponse({'logged_in': False})
-
+            return JsonResponse({"message": "user is not verified"})
+        if request.user.is_authenticated:
+            print('request.user:', request.user)
+            print('request.user.is_authenticated:', request.user.is_authenticated)
+            return JsonResponse({'logged_in': True}, {'user': request.user})
+        else:
+            print('user is not authenticated');
+            return JsonResponse({'user': request.user})
 
 class LoginView(viewsets.ModelViewSet):
     def post(self, request):
         data = json.loads(request.body.decode('utf-8'))
         username = data.get('username')
         password = data.get('password')
-        print(username, password)
         user = authenticate(request, username=username, password=password)
         if user is not None:
             if check_password(password, user.password):
                 login(request, user)
-                print(request.user)
-                print(request.user.is_authenticated)
-                return JsonResponse({'message': 'Login successful'})
+                print(user.is_authenticated)
+                return JsonResponse({"message": "login successful!"})
             else:
                 return JsonResponse({'message': 'Incorrect login credentials'})
         else:
@@ -81,3 +84,19 @@ class LoginView(viewsets.ModelViewSet):
         response = JsonResponse({'message': 'Success'})
         # Set the 'csrftoken' cookie in the response
         response.set_cookie('csrftoken', csrf_token, httponly=True, samesite='Strict')
+
+#         I'm using django+react. I'm trying to log users in. The signup function works properly. I attempt to log users in like this: 
+# `login(request, user)
+# return JsonResponse({"message": "login successful!"})`
+
+# From the frontend I submit a form to log the user in. After submitting the form, I push the user to the homepage where I have another button called 'check' to check if the user is logged in. The check view I used like this:
+# `class CheckLoggedIn(View):
+#     def get(self, request):
+#         if request.user is not None:
+#             return JsonResponse({"message": str(request.user)})
+#         else:
+#             return JsonResponse({"message": "user is not verified"});`
+
+# So, the output is, When I click the login button to submit the form, I get the response in the frontend browser console `{message: 'login successful!'}` And the page gets pushed to the homepage. However in the homepage, When I click the 'check' button, I get the response in the frontend browser console `{message: 'AnonymousUser'}`
+
+# What can be the reason? And how to fix it?
