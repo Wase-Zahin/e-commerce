@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import cartIcon from '../images/cart.png';
 import homeIcon from '../images/home.png';
+import axios from "axios";
 
 const HeaderWrapper = styled.div`
     background-color: black;
@@ -21,6 +22,15 @@ const HeaderContainer = styled.div`
 `
 
 const Header = () => {
+    const handleLogout = () => {
+        axios.post("http://localhost:8000/api/users/logout/", {}, { withCredentials: true })
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
     return (
         <HeaderWrapper>
             <HeaderContainer>
@@ -35,11 +45,14 @@ const Header = () => {
                     <Link style={{ color: "white" }} to="/cart">
                         <img src={cartIcon} alt='cart'></img>
                     </Link>
-                    <Link style={{ color: "white"}} to="/login">
+                    <Link style={{ color: "white" }} to="/login">
                         <button>Login</button>
                     </Link>
                     <Link style={{ color: "white" }} to="/signup">
-                        <button>SignUP</button>
+                        <button>Signup</button>
+                    </Link>
+                    <Link style={{ color: "white" }} to="/login">
+                        <button onClick={handleLogout}>Logout</button>
                     </Link>
                 </div>
             </HeaderContainer>

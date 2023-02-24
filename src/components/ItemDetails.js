@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from 'react-router-dom';
+import axios from "axios";
 
 const ShopWrapper = styled.div`
     padding: 2.5rem;
@@ -18,29 +19,59 @@ const ShopContainer = styled.main`
 `
 
 const Item = ({ cart, setCart }) => {
+    const [Authenticated, setAuthenticated] = useState("");
     useEffect(() => {
+        checkLoggedIn();
         fetchItem();
-    }, []);
+    }, [Authenticated]);
 
     const { id } = useParams();
     const [item, setItem] = useState([]);
 
-    const addToCart = () => {
-        let newItem = item;
-        // wrap the cart object into an array []
-        if (cart.length < 1) {
-            setCart([item])
-            item.counter = 1;
-        }
-        // if item already exists increment counter
-        else if (cart.length > 0) {
-            cart.map((cartItem) => {
-                if (cartItem.id == item.id)
-                    cartItem.counter += 1;
+    const checkLoggedIn = async () => {
+        axios.get("http://localhost:8000/api/users/check_logged_in/", {
+            withCredentials: true,
+        })
+            .then((res) => {
+                console.log(res.data)
+                if (res.data.logged_in === true)
+                    setAuthenticated(true);
+                else setAuthenticated(false);
             })
+            .catch((err) => { console.log(err) });
+        console.log(Authenticated)
+    };
+
+    const addToCart = () => {
+        if (Authenticated) {
+            const existingItem = cart.find((cartItem) => cartItem.id === item.id);
+            if (existingItem) {
+                // If item exists, increment counter property of existing item
+                const updatedCart = cart.map((cartItem) => {
+                    if (cartItem.id === item.id) {
+                        return { ...cartItem, counter: cartItem.counter + 1 };
+                    }
+                    return cartItem;
+                });
+                setCart(updatedCart, () => {
+                    // Set cart to local storage with the updated state
+                    localStorage.setItem('cart', JSON.stringify(updatedCart));
+                });
+            } else {
+                // If item doesn't exist, add it to cart with counter property of 1
+                setCart((cart) => {
+                    const newCart = [...cart, { ...item, counter: 1 }];
+                    // Set cart to local storage with the updated state
+                    localStorage.setItem('cart', JSON.stringify(newCart));
+                    return newCart;
+                });
+            }
+        } else {
+            console.log("You are not logged in");
         }
-        else (setCart(item => [...item, newItem]))
-    }
+    };
+
+
 
     const fetchItem = async () => {
         const data = await fetch(

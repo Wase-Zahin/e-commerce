@@ -32,6 +32,7 @@ const CartItem = ({ cartItem, cart, setCart, id }) => {
                             <input
                                 type="number"
                                 name="counter"
+                                key={cartItem.counter}
                                 value={cartItem.counter}
                                 min="0"
                                 onKeyPress={(event) => {

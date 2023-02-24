@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import loginIcon from "../images/6681204.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -17,20 +17,20 @@ const Login = () => {
         }, {
             headers: {
                 'Content-Type': 'application/json'
-            }, withCredentials: 'true',
+            }, withCredentials: true,
         })
             .then((res) => {
                 console.log(res.data)
                 if (res.data.message === 'login successful!') {
                     navigate('/');
-                } 
+                }
             })
             .catch((err) => {
                 console.log(err);
                 setError(err);
             });
         //  
-}
+    }
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
