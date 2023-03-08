@@ -45,9 +45,12 @@ class SignUpView(viewsets.ModelViewSet):
 class CheckLoggedIn(View):
     def get(self, request):
         if request.user.is_authenticated:
-            return JsonResponse({"logged_in": True})
+            # If the user is authenticated, return the username
+            return JsonResponse({"logged_in": True, "username": request.user.username})
         else:
-            return JsonResponse({"logged_in": False})
+            # If the user is not authenticated, return a message indicating so
+            return JsonResponse({"logged_in": False, "message": "User is not authenticated"})
+
 
 class LoginView(viewsets.ModelViewSet):
     def post(self, request):
@@ -64,6 +67,7 @@ class LoginView(viewsets.ModelViewSet):
                 return JsonResponse({'message': 'Incorrect login credentials'})
         else:
             return JsonResponse({'message': 'Incorrect login credentials'})
+
 
 class LogoutView(viewsets.ModelViewSet):
     def post(self, request):

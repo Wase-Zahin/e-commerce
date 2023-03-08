@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import CartItem from "./CartItem";
-import OrderSummary from "./orderSummary";
+import CartItem from "../CartItem/CartItem";
+import OrderSummary from "../orderSummary/orderSummary";
 
 const ShopWrapper = styled.div`
     padding: 2rem 0;

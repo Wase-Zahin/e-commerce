@@ -1,0 +1,24 @@
+.cartItemsDiv {
+    margin: auto;
+    display: grid;
+    max-width: 1200px;
+    grid-template-columns: 2fr 1fr;
+    padding: 1.5rem;
+    gap: 1rem;
+}
+
+.emptyBag {
+    height: 500px;
+}
+
+.conditionalDiv {
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+}
+
+@media screen and (max-width: 750px) {
+    .cartItemsDiv {
+        grid-template-columns: auto;
+    }
+}

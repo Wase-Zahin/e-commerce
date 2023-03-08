@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./orderSummary.css";
 
 const OrderSummary = ({ cart }) => {
     const [total, setTotal] = useState(0);

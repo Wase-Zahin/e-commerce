@@ -1,0 +1,49 @@
+.background {
+    background: url('../../images/Ecommerce.jpg') center/cover no-repeat;
+    min-height: 100vh;
+    max-width: 1920px;
+}
+
+.mid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    box-sizing: border-box;
+    color: black;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.box {
+    cursor: pointer;
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+    background: rgba(0, 0, 0, 0.842);
+    border: 3px solid #57ff51;
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
+
+}
+
+.mid:hover {
+    filter: brightness(90%);
+}
+
+@media screen and (max-width: 750px) {
+    .mid {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .mid h2 {
+        font-size: 1.2rem;
+    }
+}

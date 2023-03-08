@@ -1,0 +1,42 @@
+.company,
+.mail {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact p,
+.info p {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.contact p:hover,
+.info p:hover {
+    cursor: pointer;
+    color: #ffc851;
+    text-decoration: underline;
+}
+
+.newsletter {
+    padding: 1rem;
+    border: transparent;
+    background-color: #F3EFE0;
+}
+
+.footerLine {
+    background-color: #F3EFE0;
+    height: 0.5px;
+    width: 100%;
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: #181818;
+    color: white;
+    gap: 0.5rem;
+}

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import loginIcon from "../images/6681204.png";
+import loginIcon from "../../images/6681204.png";
 
 const SignUp = () => {
   const navigate = useNavigate();

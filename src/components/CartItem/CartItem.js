@@ -1,3 +1,5 @@
+import "./CartItem.css";
+
 const CartItem = ({ cartItem, cart, setCart, id }) => {
 
     const handleInputChange = (e, id) => {

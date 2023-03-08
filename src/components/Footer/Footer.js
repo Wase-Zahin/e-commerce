@@ -1,5 +1,6 @@
 import styled from "styled-components"
-import gitIcon from "../images/github-icon.png"
+import gitIcon from "../../images/github-icon.png"
+import "./Footer.css";
 
 const FooterContainer = styled.footer`
     display: grid;

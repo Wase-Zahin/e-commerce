@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from 'react-router-dom';
+import "./ItemDetails.css";
 import axios from "axios";
 
 const ShopWrapper = styled.div`
@@ -18,8 +19,9 @@ const ShopContainer = styled.main`
     box-shadow: 2.5px 1px 5px #393E46;
 `
 
-const Item = ({ cart, setCart }) => {
-    const [Authenticated, setAuthenticated] = useState("");
+const Item = ({ cart, setCart, Authenticated, setAuthenticated }) => {
+    const [loginprompt, setLoginprompt] = useState("");
+
     useEffect(() => {
         checkLoggedIn();
         fetchItem();
@@ -39,7 +41,6 @@ const Item = ({ cart, setCart }) => {
                 else setAuthenticated(false);
             })
             .catch((err) => { console.log(err) });
-        console.log(Authenticated)
     };
 
     const addToCart = () => {
@@ -67,7 +68,7 @@ const Item = ({ cart, setCart }) => {
                 });
             }
         } else {
-            console.log("You are not logged in");
+            setLoginprompt("Please login to add items to cart");
         }
     };
 
@@ -94,6 +95,7 @@ const Item = ({ cart, setCart }) => {
                     <h2>${item.price}</h2>
                     <p>{item.description}</p>
                     <button onClick={addToCart} className="Btn">Add To Cart</button>
+                    <p style={{ textAlign: "center", color: "red"}}>{loginprompt}</p>
                 </div>
             </ShopContainer>
         </ShopWrapper>
