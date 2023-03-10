@@ -84,7 +84,6 @@ stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
 
 @csrf_exempt
 def create_payment(request):
-
     intent = stripe.PaymentIntent.create(
         amount=1099,
         currency="cny",
