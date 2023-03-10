@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import "./orderSummary.css";
+import { Link } from "react-router-dom";
 
-const OrderSummary = ({ cart }) => {
-    const [total, setTotal] = useState(0);
+const OrderSummary = ({ cart, total, setTotal }) => {
     useEffect(() => {
         cartTotal();
     }, [cart]);
@@ -35,7 +35,7 @@ const OrderSummary = ({ cart }) => {
                     <h2>${total + 10}</h2>
                 </div>
             </div>
-            <button type="button" className="Btn"> Checkout </button>
+                <Link className="Btn" to="/cart/checkout">Checkout</Link>
         </div>
     )
 }

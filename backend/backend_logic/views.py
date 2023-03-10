@@ -7,7 +7,11 @@ from .serializers import UserSerializer
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login, logout
 from django.middleware.csrf import get_token
+from .models import Payment
 import json
+import stripe
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -73,3 +77,18 @@ class LogoutView(viewsets.ModelViewSet):
     def post(self, request):
         logout(request)
         return JsonResponse({"message": "You have been logged out!"})
+
+
+stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
+
+
+@csrf_exempt
+def create_payment(request):
+
+    intent = stripe.PaymentIntent.create(
+        amount=1099,
+        currency="cny",
+        automatic_payment_methods={"enabled": True},
+    )
+
+    return JsonResponse({"client_secret": intent.client_secret})

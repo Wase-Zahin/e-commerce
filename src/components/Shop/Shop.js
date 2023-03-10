@@ -15,13 +15,18 @@ const ShopContainer = styled.main`
     gap: 2rem;
 `
 
-const Shop = () => {
-    const [items, setItems] = useState([]);
-
+const Shop = ({ items, setItems, isLoading, setIsLoading }) => {
     useEffect(() => {
         fetchItems();
     }, []);
- 
+
+    useEffect(() => {
+        if (items.length > 0) {
+            setItems(items);
+            setIsLoading(false);
+        }
+    }, [items]);
+
     const fetchItems = async () => {
         const data = await fetch(
             'https://fakestoreapi.com/products'
@@ -31,25 +36,33 @@ const Shop = () => {
         setItems(items);
     }
 
+
+
     return (
         <ShopWrapper>
             <ShopContainer>
-                {items.map(item => (
-                    <div key={item.id}>
-                        <Link to={`/shop/${item.id}`}>
-                            <div className="shopImgDiv">
-                                <div className="img">
-                                    <img src={item.image} alt={item.title}></img>
+
+                {isLoading ?
+                    <h1 className="Loading">
+                        Loading...
+                    </h1>
+                    : (items.map(item => (
+                        <div key={item.id}>
+                            <Link to={`/shop/${item.id}`}>
+                                <div className="shopImgDiv">
+                                    <div className="img">
+                                        <img src={item.image} alt={item.title}></img>
+                                    </div>
+                                    <div className="titlePrice">
+                                        <h3>{item.title}</h3>
+                                        <p>${item.price}</p>
+                                    </div>
+                                    <button type="button" className="Btn">View Details</button>
                                 </div>
-                                <div className="titlePrice">
-                                    <h3>{item.title}</h3>
-                                    <p>${item.price}</p>
-                                </div>
-                                <button type="button" className="Btn">View Details</button>
-                            </div>
-                        </Link>
-                    </div>
-                ))}
+                            </Link>
+                        </div>
+                    )))}
+
             </ShopContainer>
         </ShopWrapper>
     )

@@ -94,6 +94,9 @@ AUTH_USER_MODEL =  'backend_logic.CustomUser'
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 
+STRIPE_TEST_PUBLISHABLE_KEY = 'pk_test_51Mk0utA80Tij0bnPXMSHBBOBk5CYgfdgSv0aMyzNQIIL5nucQLtSZUTFeX1PedqFOjD34KnrH8gEYN3i7fdCc7cH00Eawy3yUL'
+STRIPE_TEST_SECRET_KEY = 'sk_test_51Mk0utA80Tij0bnPreQVInQBupOFQ9bMnqBukVfv8L7Umb1koMcbpcXlP5OEI756vtsPiIEuOTRzfZa9Yy0UpCYl002KFOgKWc'
+
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 

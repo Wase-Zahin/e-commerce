@@ -36,3 +36,11 @@
 .img {
     align-self: center;
 }
+
+.Loading { 
+    color: red;
+    height: 100vh;
+    margin: auto;
+    position: absolute;
+    transform: translate(50%, -50%);
+}

@@ -8,7 +8,7 @@ const ShopWrapper = styled.div`
     margin: auto;
 `
 
-const Cart = ({ cart, setCart }) => {
+const Cart = ({ cart, setCart, total, setTotal }) => {
     const cartItems = cart.map((cartItem) => {
         return (
             <CartItem
@@ -28,7 +28,10 @@ const Cart = ({ cart, setCart }) => {
                     <div>
                         {cartItems}
                     </div>
-                    <OrderSummary cart={cart}>
+                    <OrderSummary 
+                        cart={cart}
+                        total={total}
+                        setTotal={setTotal}>
                     </OrderSummary>
                 </div> :
                 <div className="emptyBag">
