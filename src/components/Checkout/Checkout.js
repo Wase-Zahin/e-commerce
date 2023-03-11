@@ -7,10 +7,14 @@ import "./Checkout.css";
 const stripePromise = loadStripe('pk_test_51Mk0utA80Tij0bnPXMSHBBOBk5CYgfdgSv0aMyzNQIIL5nucQLtSZUTFeX1PedqFOjD34KnrH8gEYN3i7fdCc7cH00Eawy3yUL');
 
 const CheckoutForm = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
+
     return (
-        <form>
+        <form className='checkoutForm'>
             <PaymentElement />
-            <button>Submit</button>
+            <button onClick={handleSubmit} className='Btn'>Submit</button>
         </form>
     );
 };

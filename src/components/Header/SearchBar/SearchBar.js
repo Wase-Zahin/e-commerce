@@ -65,13 +65,16 @@ export default function SearchBar({ items, isLoading }) {
                 ref={searchBoxRef}
                 onClick={() => setIsSearchBoxActive(true)}
             />
-            {isSearchBoxActive && (
-                (filteredResults.map(product => {
-                    return <div className='search-results' key={product.id} style={getSearchBoxResultsStyles()} ref={searchResultsRef}>
-                        <h3 onClick={handleSearch}>{product.title}</h3>
-                    </div>
-                }
-            )))}
+            {isSearchBoxActive &&
+                <div className='search-results' style={getSearchBoxResultsStyles()} ref={searchResultsRef}>
+                    {
+                        (filteredResults.map(product => {
+                            return <h3 key={product.id} onClick={handleSearch}>{product.title}</h3>
+                        }
+                        ))
+                    }
+                </div>
+            }
         </div>
     )
 }
