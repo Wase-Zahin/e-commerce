@@ -1,19 +1,10 @@
-import styled from "styled-components"
 import gitIcon from "../../images/github-icon.png"
 import "./Footer.css";
 
-const FooterContainer = styled.footer`
-    display: grid;
-    background-color: #181818;
-    color: white;
-    padding: 2.5rem;
-    gap: 2.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-`
 const Footer = () => {
     return (
         <div>
-            <FooterContainer>
+            <div className="footerContainer">
                 <div className="company">
                     <h1>Company</h1>
                     <div>
@@ -54,7 +45,7 @@ const Footer = () => {
                     <p>Be the First to Know. Sign up for newsletter today !</p>
                     <input className="newsletter" placeholder="Enter your email address"></input>
                 </div>
-            </FooterContainer>
+            </div>
             <div className="footerLine"></div>
             <div className="copyright">
                 Copyright © 2022 Zahin

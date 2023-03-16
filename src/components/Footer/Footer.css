@@ -1,3 +1,12 @@
+.footerContainer{
+    display: grid;
+    background-color: #181818;
+    color: white;
+    padding: 2.5rem;
+    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
 .company,
 .mail {
     display: flex;
@@ -39,4 +48,11 @@
     background-color: #181818;
     color: white;
     gap: 0.5rem;
+}
+
+@media screen and (max-width: 350px) {
+    .newsletter {
+        height: fit-content;
+        width: fit-content;
+    }
 }

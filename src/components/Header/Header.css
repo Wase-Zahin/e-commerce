@@ -1,5 +1,16 @@
-.logo {
-    color: #ffc851;
+.headerWrapper {
+    background-color: black;
+    box-shadow: 1px 1px 1px white;
+}
+
+.headerContainer {
+    max-width: 1200px;
+    padding: 1rem 0 0.8rem 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
 }
 
 .nav-links {
@@ -53,3 +64,29 @@
     background-color: #ddd;
 }
 
+.menuIcon {
+    display: block;
+}
+
+.cartIcon, .menuIcon, .logo {
+    height: 24px;
+    width: 24px;
+}
+
+@media screen and (max-width: 768px) {
+    .menuIcon {
+        display: inline-flex;
+    }
+    .nav-links {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .menuIcon {
+        display: none;
+    }
+    .nav-links {
+        display: inline-flex;
+    }
+}

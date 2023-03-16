@@ -1,43 +1,36 @@
 import './Header.css';
-import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar/SearchBar';
 import LoginState from './LoginState/LoginState';
-
-const HeaderWrapper = styled.div`
-    background-color: black;
-    box-shadow: 1px 1px 1px white;
-`
-const HeaderContainer = styled.div`
-    height: auto;
-    max-width: 1200px;
-    margin: auto;
-    padding: 1rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: white;
-`
+import { TbAlignRight } from 'react-icons/tb';
+import { BsCart } from "react-icons/bs";
+import Logo from "../../images/logo.png";
+import { MyContextProvider } from '../../Context';
 
 const Header = ({ Authenticated, setAuthenticated, items, isLoading }) => {
+    const { } = MyContextProvider();
     return (
-        <HeaderWrapper>
-            <HeaderContainer>
-                <h1 className="logo">Logo</h1>
-                <SearchBar items={items} isLoading={isLoading}></SearchBar>
+        <div className='headerWrapper'>
+            <div className='headerContainer'>
 
+                <TbAlignRight className='menuIcon' />
+                <Link to="/"><img className='logo' src={Logo}></img></Link>
+                <SearchBar items={items} isLoading={isLoading}></SearchBar>
+                <BsCart className='cartIcon' />
+                
                 <div className="nav-links">
                     <Link style={{ color: "white" }} to="/shop">Shop</Link>
-                    <Link style={{ color: "white" }} to="/">Home</Link>
-                    <Link style={{ color: "white" }} to="/cart">Cart</Link>
-
+                    <Link style={{ color: "white" }} to="/cart">
+                        <BsCart className='cartIcon' />
+                    </Link>
                     {/* conditional rendering based on if the user is logged in or not */}
-                    <LoginState 
-                        Authenticated={Authenticated} 
-                        setAuthenticated={setAuthenticated}></LoginState>
+                    <LoginState
+                        Authenticated={Authenticated}
+                        setAuthenticated={setAuthenticated}>
+                    </LoginState>
                 </div>
-            </HeaderContainer>
-        </HeaderWrapper>
+            </div>
+        </div>
     )
 }
 

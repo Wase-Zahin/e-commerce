@@ -3,47 +3,30 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import "./Shop.css";
 
-const ShopWrapper = styled.div`
-    padding: 2.5rem;
-    background-color: #EAEAEA;
-`
-const ShopContainer = styled.main`
-    display: grid;
-    max-width: 1200px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    margin: auto;
-    gap: 2rem;
-`
-
 const Shop = ({ items, setItems, isLoading, setIsLoading }) => {
     useEffect(() => {
         fetchItems();
     }, []);
 
-    useEffect(() => {
-        if (items.length > 0) {
-            setItems(items);
-            setIsLoading(false);
-        }
-    }, [items]);
-
     const fetchItems = async () => {
         const data = await fetch(
             'https://fakestoreapi.com/products'
         );
-
+        
         const items = await data.json();
-        setItems(items);
+        if (items) {
+            setIsLoading(false);
+            setItems(items);
+        }
+        else setIsLoading(true);
     }
 
-
-
     return (
-        <ShopWrapper>
-            <ShopContainer>
+        <div className="shopWrapper">
+            <div className='shopContainer'>
 
                 {isLoading ?
-                    <h1 className="Loading">
+                    <h1 style={{ fontSize: '50px' }} className="Loading">
                         Loading...
                     </h1>
                     : (items.map(item => (
@@ -63,8 +46,8 @@ const Shop = ({ items, setItems, isLoading, setIsLoading }) => {
                         </div>
                     )))}
 
-            </ShopContainer>
-        </ShopWrapper>
+            </div>
+        </div>
     )
 }
 

@@ -10,15 +10,18 @@ import Checkout from './components/Checkout/Checkout';
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from './components/Signup/Signup';
+import { MyContextProvider } from './Context';
 
 const App = () => {
+  const {hel} = MyContextProvider();
   const [total, setTotal] = useState(0); // cart total for checkout
   const [isLoading, setIsLoading] = useState(true); // check if the fetching products is completed
   const [items, setItems] = useState([]); // the cart items was sent to ItemDetails component from where the items were added to the cart
   const [cart, setCart] = useState([]);
   const [Authenticated, setAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
-
+  
+console.log(hel)
   useEffect(() => {
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
@@ -45,7 +48,7 @@ const App = () => {
             <Shop
               items={items}
               setItems={setItems}
-              loading={items}
+              isLoading={isLoading}
               setIsLoading={setIsLoading}
             />
           }

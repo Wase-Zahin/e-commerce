@@ -35,7 +35,7 @@ const OrderSummary = ({ cart, total, setTotal }) => {
                     <h2>${total + 10}</h2>
                 </div>
             </div>
-                <Link className="Btn" to="/cart/checkout">Checkout</Link>
+                <Link className="checkoutBtn" to="/cart/checkout">Checkout</Link>
         </div>
     )
 }

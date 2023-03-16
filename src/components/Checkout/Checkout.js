@@ -14,7 +14,7 @@ const CheckoutForm = () => {
     return (
         <form className='checkoutForm'>
             <PaymentElement />
-            <button onClick={handleSubmit} className='Btn'>Submit</button>
+            <button className='Btn'>Submit</button>
         </form>
     );
 };

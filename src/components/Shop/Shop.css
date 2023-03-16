@@ -1,3 +1,16 @@
+.shopWrapper {
+    padding: 2.5rem;
+    background-color: #EAEAEA;
+}
+
+.shopContainer {
+    display: grid;
+    max-width: 1200px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    margin: auto;
+    gap: 2rem;
+}
+
 .shopImgDiv img {
     height: 100%;
     align-self: center;
@@ -42,5 +55,7 @@
     height: 100vh;
     margin: auto;
     position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(50%, -50%);
 }

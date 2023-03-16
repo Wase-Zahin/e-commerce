@@ -1,7 +1,7 @@
 import "./SearchBar.css";
-
 import React from 'react'
 import { useState, useEffect, useRef } from "react";
+import { AiOutlineSearch } from 'react-icons/ai';
 
 export default function SearchBar({ items, isLoading }) {
     const [isSearchBoxActive, setIsSearchBoxActive] = useState(false);
@@ -60,11 +60,15 @@ export default function SearchBar({ items, isLoading }) {
             <input
                 className='search-box'
                 type="text"
+                placeholder="Search for products..."
                 value={searchQuery}
                 onChange={handleSearchChange}
                 ref={searchBoxRef}
                 onClick={() => setIsSearchBoxActive(true)}
             />
+            <div className="searchIconWrapper">
+                <AiOutlineSearch className="searchIcon" />
+            </div>
             {isSearchBoxActive &&
                 <div className='search-results' style={getSearchBoxResultsStyles()} ref={searchResultsRef}>
                     {

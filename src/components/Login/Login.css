@@ -58,17 +58,3 @@
     height: 65px;
     width: 65px;
 }
-
-@media screen and (max-width: 550px) {
-    .background {
-        max-width: 400px;
-        background-size: contain;
-    }
-}
-
-@media screen and (max-width: 750px) {
-    .background {
-        max-width: 600px;
-        background-size: contain;
-    }
-}
