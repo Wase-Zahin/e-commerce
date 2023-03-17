@@ -2,6 +2,7 @@ import "./SearchBar.css";
 import React from 'react'
 import { useState, useEffect, useRef } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
+import { Link } from "react-router-dom";
 
 export default function SearchBar({ items, isLoading }) {
     const [isSearchBoxActive, setIsSearchBoxActive] = useState(false);
@@ -56,14 +57,14 @@ export default function SearchBar({ items, isLoading }) {
     })
 
     return (
-        <div className='search'>
+        <div className='search' ref={searchBoxRef}>
             <input
                 className='search-box'
                 type="text"
                 placeholder="Search for products..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-                ref={searchBoxRef}
+
                 onClick={() => setIsSearchBoxActive(true)}
             />
             <div className="searchIconWrapper">
@@ -73,7 +74,15 @@ export default function SearchBar({ items, isLoading }) {
                 <div className='search-results' style={getSearchBoxResultsStyles()} ref={searchResultsRef}>
                     {
                         (filteredResults.map(product => {
-                            return <h3 key={product.id} onClick={handleSearch}>{product.title}</h3>
+                            return (
+                                <Link to={`/shop/${product.id}`}>
+                                    <p
+                                        key={product.id}
+                                        onClick={handleSearch}>
+                                        {product.title}
+                                    </p>
+                                </Link>
+                            )
                         }
                         ))
                     }

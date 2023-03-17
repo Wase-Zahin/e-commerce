@@ -13,21 +13,29 @@ const Header = ({ Authenticated, setAuthenticated, items, isLoading }) => {
         <div className='headerWrapper'>
             <div className='headerContainer'>
 
-                <TbAlignRight className='menuIcon' />
-                <Link to="/"><img className='logo' src={Logo}></img></Link>
-                <SearchBar items={items} isLoading={isLoading}></SearchBar>
-                <BsCart className='cartIcon' />
-                
-                <div className="nav-links">
-                    <Link style={{ color: "white" }} to="/shop">Shop</Link>
+
+                {/* left side of navbar (logo and search bar in big screen) */}
+                <div className='navLeftSide'>
+                    <Link to="/">
+                        <img className='logo' src={Logo} />
+                    </Link>
+                    <SearchBar items={items} isLoading={isLoading}></SearchBar>
+                </div>
+
+                <div className='nav-links-wrapper'>
                     <Link style={{ color: "white" }} to="/cart">
                         <BsCart className='cartIcon' />
                     </Link>
-                    {/* conditional rendering based on if the user is logged in or not */}
-                    <LoginState
-                        Authenticated={Authenticated}
-                        setAuthenticated={setAuthenticated}>
-                    </LoginState>
+                    <TbAlignRight className='menuIcon' /> {/* menuIcon in small screen */}
+
+                    <div className='nav-links'>
+                        <Link style={{ color: "white" }} to="/shop">Shop</Link>
+                        {/* conditional rendering based on if the user is logged in or not */}
+                        <LoginState
+                            Authenticated={Authenticated}
+                            setAuthenticated={setAuthenticated}>
+                        </LoginState>
+                    </div>
                 </div>
             </div>
         </div>

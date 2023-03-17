@@ -1,8 +1,23 @@
+.full-bg {
+    background-color: #c4e4e65c;
+    z-index: -100;
+}
+
 .background {
-    background: url('../../images/wave.svg') center/cover no-repeat;
-    min-height: 100vh;
+    position: relative;
     max-width: 1920px;
     z-index: 1;
+}
+
+.mid {
+    padding-top: 8rem;
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .shopInvitation {
@@ -12,45 +27,21 @@
     gap: 2rem;
 }
 
-.full-bg {
-    background-color: #c4e4e65c;
-    z-index: -100;
-}
-
-.bg-img {
-    background: url('../../images/vector_img.jpg') center/cover no-repeat;
-    height: 400px;
-    width: 400px;
-    filter: brightness(90%);
-    z-index: -1;
-}
-
 @media screen and (max-width: 768px) {
     .background {
         opacity: 0.8;
     }
-    
+
     .bg-img {
         position: absolute;
         background-size: cover;
-        height: 100%;
-        width: 100%;
+        max-width: 100%;
+        height: auto;
         top: 10%;
         z-index: -1000;
         opacity: 0.8;
+        margin: 0;
     }
-}
-
-.mid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    z-index: 100;
-    place-items: center;
-    gap: 5rem;
-    font-size: 1.8rem;
-    font-weight: bold;
-    text-align: center;
-    box-sizing: border-box;
 }
 
 .shopBtn {

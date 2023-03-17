@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
 import "./Shop.css";
 
 const Shop = ({ items, setItems, isLoading, setIsLoading }) => {
@@ -12,7 +12,7 @@ const Shop = ({ items, setItems, isLoading, setIsLoading }) => {
         const data = await fetch(
             'https://fakestoreapi.com/products'
         );
-        
+
         const items = await data.json();
         if (items) {
             setIsLoading(false);
@@ -26,9 +26,20 @@ const Shop = ({ items, setItems, isLoading, setIsLoading }) => {
             <div className='shopContainer'>
 
                 {isLoading ?
-                    <h1 style={{ fontSize: '50px' }} className="Loading">
-                        Loading...
-                    </h1>
+                    Array(20).fill().map((_, index) => (
+                        <div key={index}>
+                            <Link to={`/shop/${index}`}>
+                                <div className="shopImgDiv">
+                                    <Skeleton width={200} height={400} />
+                                    <div className="titlePrice">
+                                        <Skeleton width={120} height={20} />
+                                        <Skeleton width={80} height={20} />
+                                    </div>
+                                    <Skeleton width={150} height={40} />
+                                </div>
+                            </Link>
+                        </div>
+                    ))
                     : (items.map(item => (
                         <div key={item.id}>
                             <Link to={`/shop/${item.id}`}>

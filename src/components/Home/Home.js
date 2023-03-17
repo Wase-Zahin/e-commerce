@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import "./Home.css";
+import wave from "../../images/wave.svg";
 
 const Home = () => {
     return (
@@ -14,9 +15,11 @@ const Home = () => {
                             </div>
                         </Link>
                     </div>
-                    <div className='bg-img'></div>
+                    <div className='bg-img'>
+                    </div>
                 </div>
             </div>
+            <img src={wave} alt="wave background image"></img>
         </div>
     )
 }

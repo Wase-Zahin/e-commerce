@@ -5,10 +5,10 @@
 .dropdown-button {
     background-color: transparent;
     color: #ffffff;
-    padding: 8px 16px;
     border: none;
     cursor: pointer;
     font-size: 16px;
+    padding: 8px 8px;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -27,9 +27,8 @@
 }
 
 .link_item {
-    display: block;
     width: 100%;
-    padding: 8px 16px;
+    padding: 8px 8px;
     cursor: pointer;
 }
 

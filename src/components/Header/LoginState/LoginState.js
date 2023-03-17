@@ -1,6 +1,6 @@
 import './LoginState.css';
 import React from 'react'
-import user_icon from '../../../images/user-icon.svg';
+import { TfiUser } from 'react-icons/tfi';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -78,7 +78,7 @@ export default function LoginState({ Authenticated, setAuthenticated}) {
     return (
         <div className="login_state">
             <button onClick={handleDropdown} className="dropdown-button" ref={buttonRef} >
-                <img className="user-icon" src={user_icon} alt="User Icon"></img>
+                <TfiUser />
                 {Authenticated ? storedUsername : "Login"}
             </button>
 
