@@ -2,7 +2,7 @@ import React, { useContext, createContext, useState } from "react";
 
 const myContext = createContext();
 
-export const MyGlobalWrapper = ({ children id }) => {
+export const MyGlobalWrapper = ({ children }) => {
     const hel = "hello";
     
     return (

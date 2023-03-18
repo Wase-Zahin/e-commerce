@@ -1,6 +1,6 @@
 import "./CartItem.css";
 
-const CartItem = ({ cartItem, cart, setCart, id }) => {
+const CartItem = ({ cart, setCart, cartItem, id }) => {
 
     const handleInputChange = (e, id) => {
         const { name, value } = e.target;
@@ -10,6 +10,7 @@ const CartItem = ({ cartItem, cart, setCart, id }) => {
             } else return cartItem;
         })
         setCart(newCart);
+        localStorage.setItem("cart", JSON.stringify(newCart));
     }
 
     return (

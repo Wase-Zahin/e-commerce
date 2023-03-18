@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import CartItem from "../CartItem/CartItem";
 import OrderSummary from "../orderSummary/orderSummary";
@@ -8,7 +9,18 @@ const ShopWrapper = styled.div`
     margin: auto;
 `
 
-const Cart = ({ cart, setCart, total, setTotal }) => {
+const Cart = ({ total, setTotal }) => {
+    const [cart, setCart] = useState([]);
+    console.log(localStorage.getItem('cart'));
+
+    useEffect(() => {
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+            setCart(JSON.parse(storedCart));
+        }
+    }, []);
+    
+
     const cartItems = cart.map((cartItem) => {
         return (
             <CartItem
@@ -28,7 +40,7 @@ const Cart = ({ cart, setCart, total, setTotal }) => {
                     <div>
                         {cartItems}
                     </div>
-                    <OrderSummary 
+                    <OrderSummary
                         cart={cart}
                         total={total}
                         setTotal={setTotal}>
