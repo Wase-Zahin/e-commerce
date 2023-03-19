@@ -1,4 +1,5 @@
 import "./CartItem.css";
+import { MdOutlineRemoveCircle } from 'react-icons/md';
 
 const CartItem = ({ cart, setCart, cartItem, id }) => {
 
@@ -30,21 +31,24 @@ const CartItem = ({ cart, setCart, cartItem, id }) => {
                             <p>{cartItem.price}</p>
                         </div>
 
-                        <div className="quantity">
-                            <h4>Quantity</h4>
-                            <input
-                                type="number"
-                                name="counter"
-                                key={cartItem.counter}
-                                value={cartItem.counter}
-                                min="0"
-                                onKeyPress={(event) => {
-                                    if (!/[0-9]/.test(event.key)) {
-                                        event.preventDefault();
-                                    }
-                                }}
-                                onChange={(e) => handleInputChange(e, id)}
-                            ></input>
+                        <div className="quantityWrapper">
+                            <div className="quantity">
+                                <h4>Quantity</h4>
+                                <input
+                                    type="number"
+                                    name="counter"
+                                    key={cartItem.counter}
+                                    value={cartItem.counter}
+                                    min="0"
+                                    onKeyPress={(event) => {
+                                        if (!/[0-9]/.test(event.key)) {
+                                            event.preventDefault();
+                                        }
+                                    }}
+                                    onChange={(e) => handleInputChange(e, id)}
+                                ></input>
+                            </div>
+                            <MdOutlineRemoveCircle className="removeIcon" />
                         </div>
                     </div>
                 </div>
