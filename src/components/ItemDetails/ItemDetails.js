@@ -1,30 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { useParams } from 'react-router-dom';
 import "./ItemDetails.css";
 import axios from "axios";
-
-const ShopWrapper = styled.div`
-    padding: 2.5rem;
-    background-color: #EAEAEA;
-`
-const ShopContainer = styled.main`
-    display: grid;
-    margin: auto;
-    max-width: 1200px;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    padding: 1.5rem;
-    gap: 1rem;
-    background-color: white;
-    box-shadow: 2.5px 1px 5px #393E46;
-`
 
 const Item = ({ Authenticated, setAuthenticated }) => {
     const [cart, setCart] = useState([]);
     const [loginprompt, setLoginprompt] = useState("");
     const { id } = useParams();
     const [item, setItem] = useState([]);
-    const storedItem = localStorage.getItem('cart');
 
     useEffect(() => {
         checkLoggedIn();
@@ -98,8 +81,8 @@ const Item = ({ Authenticated, setAuthenticated }) => {
     }
 
     return (
-        <ShopWrapper>
-            <ShopContainer>
+        <div className="ShopWrapper">
+            <div className="ShopContainer">
                 <div className="imgDiv">
                     <img src={item.image} alt={item.title}></img>
                 </div>
@@ -110,8 +93,8 @@ const Item = ({ Authenticated, setAuthenticated }) => {
                     <button onClick={addToCart} className="Btn">Add To Cart</button>
                     <p style={{ textAlign: "center", color: "red" }}>{loginprompt}</p>
                 </div>
-            </ShopContainer>
-        </ShopWrapper>
+            </div>
+        </div>
     )
 }
 

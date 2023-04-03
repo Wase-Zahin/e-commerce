@@ -1,21 +1,22 @@
 .full-bg {
-    background-color: #c4e4e65c;
-    z-index: -100;
+    margin-bottom: -4px;
 }
 
 .background {
     position: relative;
     max-width: 1920px;
-    height: 80vh;
+    height: 60vh;
     z-index: 1;
 }
 
 .mid {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
     padding-top: 8rem;
     height: fit-content;
     width: fit-content;
     margin: auto;
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: bold;
     text-align: center;
     box-sizing: border-box;
@@ -28,21 +29,17 @@
     gap: 2rem;
 }
 
-@media screen and (max-width: 768px) {
-    .background {
-        opacity: 0.8;
-    }
-
-    .bg-img {
-        position: absolute;
-        background-size: cover;
-        max-width: 100%;
-        height: auto;
-        top: 10%;
-        z-index: -1000;
-        opacity: 0.8;
-        margin: 0;
-    }
+.bg-img {
+    position: absolute;
+    background-size: cover;
+    max-width: 100%;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    z-index: -1000;
+    opacity: 0.6;
+    margin: auto;
 }
 
 .shopBtn {
@@ -68,8 +65,20 @@
     }
 }
 
-@media screen and (max-width: 550px) {
-    .mid h2 {
+@media screen and (max-width: 500px) {
+    .mid {
         font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .mid {
+        font-size: 1.0rem;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .mid {
+        font-size: 0.9rem;
     }
 }

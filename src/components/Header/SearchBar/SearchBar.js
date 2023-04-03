@@ -75,9 +75,8 @@ export default function SearchBar({ items, isLoading }) {
                     {
                         (filteredResults.map(product => {
                             return (
-                                <Link to={`/shop/${product.id}`}>
+                                <Link to={`/shop/${product.id}`} key={product.id}>
                                     <p
-                                        key={product.id}
                                         onClick={handleSearch}>
                                         {product.title}
                                     </p>

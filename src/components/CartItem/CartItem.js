@@ -14,6 +14,12 @@ const CartItem = ({ cart, setCart, cartItem, id }) => {
         localStorage.setItem("cart", JSON.stringify(newCart));
     }
 
+    const handleRemoveItem = (id) => {
+        const newCart = cart.filter((cartItem) => cartItem.id !== id);
+        setCart(newCart);
+        localStorage.setItem("cart", JSON.stringify(newCart));
+    }
+
     return (
         <div className="cartItems">
             <img src={cartItem.image} alt={cartItem.title} className="pic"></img>
@@ -33,7 +39,7 @@ const CartItem = ({ cart, setCart, cartItem, id }) => {
 
                         <div className="quantityWrapper">
                             <div className="quantity">
-                                <h4>Quantity</h4>
+                                <h4>Quantity:</h4>
                                 <input
                                     type="number"
                                     name="counter"
@@ -48,7 +54,7 @@ const CartItem = ({ cart, setCart, cartItem, id }) => {
                                     onChange={(e) => handleInputChange(e, id)}
                                 ></input>
                             </div>
-                            <MdOutlineRemoveCircle className="removeIcon" />
+                            <MdOutlineRemoveCircle onClick={() => handleRemoveItem(id)} className="removeIcon" />
                         </div>
                     </div>
                 </div>

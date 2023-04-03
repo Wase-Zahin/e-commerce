@@ -1,25 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import "./Shop.css";
 
-const Shop = ({ items, setItems, isLoading, setIsLoading }) => {
-    useEffect(() => {
-        fetchItems();
-    }, []);
-
-    const fetchItems = async () => {
-        const data = await fetch(
-            'https://fakestoreapi.com/products'
-        );
-
-        const items = await data.json();
-        if (items) {
-            setIsLoading(false);
-            setItems(items);
-        }
-        else setIsLoading(true);
-    }
+const Shop = ({ items, isLoading }) => {
+    
 
     return (
         <div className="shopWrapper">

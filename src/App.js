@@ -7,6 +7,7 @@ import Item from './components/ItemDetails/ItemDetails';
 import Cart from './components/Cart/Cart';
 import Login from './components/Login/Login';
 import Checkout from './components/Checkout/Checkout';
+import CheckoutStatus from './components/CheckoutStatus/CheckoutStatus';
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from './components/Signup/Signup';
@@ -18,7 +19,24 @@ const App = () => {
   const [cart, setCart] = useState([]);
   const [Authenticated, setAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
-  
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const fetchItems = async () => {
+    const data = await fetch(
+      'https://fakestoreapi.com/products'
+    );
+
+    const items = await data.json();
+    if (items) {
+      setIsLoading(false);
+      setItems(items);
+    }
+    else setIsLoading(true);
+  }
+
   return (
     <Router>
       <Header
@@ -88,6 +106,8 @@ const App = () => {
             />
           }
         />
+        <Route 
+          path='/cart/checkout/status' element={<CheckoutStatus/>}/>
       </Routes>
       <Footer></Footer>
       <div className='overlay'></div>

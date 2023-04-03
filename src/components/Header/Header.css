@@ -20,12 +20,10 @@
     gap: 3rem;
 }
 
-
 .nav-links, .nav-links-wrapper {
     display: flex;
     gap: 2rem;
     align-items: center;
-    text-decoration: underline;
 }
 
 .nav-links *:hover {
@@ -44,6 +42,17 @@
 .cartIcon, .menuIcon, .logo {
     height: 24px;
     width: 24px;
+}
+
+
+.dropdownMenu {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    padding: 1rem 0;
 }
 
 @media screen and (max-width: 768px) {

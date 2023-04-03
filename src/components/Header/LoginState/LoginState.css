@@ -35,3 +35,8 @@
 .dropdown-menu-item:hover {
     background-color: #ddd;
 }
+
+.userIcon {
+    color: rgb(255, 196, 0);
+    font-size: 1.4rem;
+}

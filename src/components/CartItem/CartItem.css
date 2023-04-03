@@ -34,12 +34,10 @@
   justify-content: space-around;
 }
 
-
 .cartPriceQntt {
   display: flex;
   justify-content: space-between;
 }
-
 
 .quantity input {
   width: 45px;
@@ -50,12 +48,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  gap: 4px;
 }
 
 .quantityWrapper {
   border: 0.5px solid lightgray;
-  padding: 1rem;
+  padding: 0.8rem;
   display: flex;
   gap: 2rem;
   align-items: center;
@@ -83,5 +81,23 @@
   .pic {
     height: 110px;
     width: 110px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .itemDetailsDiv {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .cartPriceQntt {
+    flex-direction: column;
+    gap: 0.8rem;
+    width: fit-content;
+  }
+
+  .quantityWrapper {
+    padding: 0.6rem;
   }
 }
