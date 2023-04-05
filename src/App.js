@@ -11,6 +11,7 @@ import CheckoutStatus from './components/CheckoutStatus/CheckoutStatus';
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from './components/Signup/Signup';
+import Profile from './components/Profile/Profile';
 
 const App = () => {
   const [total, setTotal] = useState(0); // cart total for checkout
@@ -106,8 +107,22 @@ const App = () => {
             />
           }
         />
-        <Route 
-          path='/cart/checkout/status' element={<CheckoutStatus/>}/>
+        <Route
+          path='/cart/checkout/status'
+          element={
+            <CheckoutStatus
+              cart={cart}
+              setCart={setCart}
+            />
+          }
+        />
+        <Route
+          path='/profile'
+          element={
+            <Profile
+            />
+          }
+        />
       </Routes>
       <Footer></Footer>
       <div className='overlay'></div>

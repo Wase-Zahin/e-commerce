@@ -27,13 +27,14 @@ const Header = ({ Authenticated, setAuthenticated, items, isLoading }) => {
                     </div>
 
                     <div className='nav-links-wrapper'>
-                        <Link style={{ color: "white" }} to="/cart">
-                            <BsCart className='cartIcon' />
-                        </Link>
+                        <Link style={{ color: "white" }} to="/shop">Shop</Link>
+
                         <TbAlignRight className='menuIcon' onClick={toggleDropdown} /> {/* menuIcon in small screen */}
 
                         <div className='nav-links'>
-                            <Link style={{ color: "white" }} to="/shop">Shop</Link>
+                            <Link style={{ color: "white" }} to="/cart">
+                                <BsCart className='cartIcon' />
+                            </Link>
                             {/* conditional rendering based on if the user is logged in or not */}
                             <LoginState
                                 Authenticated={Authenticated}

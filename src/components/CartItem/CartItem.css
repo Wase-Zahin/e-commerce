@@ -18,9 +18,16 @@
 }
 
 .itemDetailsDiv {
+  position: relative;
   display: flex;
   gap: 1rem;
   flex-direction: column;
+}
+
+.removeIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .itemTitle {
@@ -41,6 +48,9 @@
 
 .quantity input {
   width: 45px;
+  border: none;
+  text-align: center;
+  width: 32px;
 }
 
 .quantity {
@@ -48,7 +58,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 12px;
 }
 
 .quantityWrapper {
@@ -66,8 +76,21 @@
   cursor: pointer;
 }
 
-.removeIcon:hover {
+.removeIcon:hover, .minusIcon:hover, .plusIcon:hover {
   transform: scale(1.1);
+}
+
+.minusIcon {
+  color: rgb(255, 74, 74);
+  cursor: pointer;
+}
+
+.plusIcon {
+  cursor: pointer;
+}
+
+.iconInput {
+  display: flex;
 }
 
 @media screen and (max-width: 550px) {
