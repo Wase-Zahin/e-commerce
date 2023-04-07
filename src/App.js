@@ -11,15 +11,20 @@ import CheckoutStatus from './components/CheckoutStatus/CheckoutStatus';
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from './components/Signup/Signup';
-import Profile from './components/Profile/Profile';
 
 const App = () => {
   const [total, setTotal] = useState(0); // cart total for checkout
   const [isLoading, setIsLoading] = useState(true); // check if the fetching products is completed
-  const [items, setItems] = useState([]); // the cart items was sent to ItemDetails component from where the items were added to the cart
-  const [cart, setCart] = useState([]);
+  const [items, setItems] = useState([]);
+  const [cart, setCart] = useState([]); // the cart items was sent to ItemDetails component from where the items were added to the cart
   const [Authenticated, setAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
+  const [totalCartItems, setTotalCartItems] = useState(0);
+
+  useEffect(() => {
+    const totalItems = cart.reduce((total, item) => total + item.counter, 0);
+    setTotalCartItems(totalItems);
+  }, [cart]);
 
   useEffect(() => {
     fetchItems();
@@ -46,7 +51,8 @@ const App = () => {
         username={username}
         setUsername={setUsername}
         items={items}
-        isLoading={isLoading}>
+        isLoading={isLoading}
+        totalCartItems={totalCartItems}>
       </Header>
 
       <Routes>
@@ -55,6 +61,7 @@ const App = () => {
           path='/shop'
           element={
             <Shop
+              cart={cart}
               items={items}
               setItems={setItems}
               isLoading={isLoading}
@@ -94,8 +101,8 @@ const App = () => {
             <Item
               Authenticated={Authenticated}
               setAuthenticated={setAuthenticated}
-              setCart={setCart}
-              cart={cart} />
+              cart={cart}
+              setCart={setCart} />
           }
         />
 
@@ -109,20 +116,7 @@ const App = () => {
         />
         <Route
           path='/cart/checkout/status'
-          element={
-            <CheckoutStatus
-              cart={cart}
-              setCart={setCart}
-            />
-          }
-        />
-        <Route
-          path='/profile'
-          element={
-            <Profile
-            />
-          }
-        />
+          element={<CheckoutStatus />} />
       </Routes>
       <Footer></Footer>
       <div className='overlay'></div>

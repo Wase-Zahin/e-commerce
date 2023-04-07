@@ -3,14 +3,15 @@ import './CheckoutStatus.css'
 import { IoMdCheckmarkCircle } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom';
 
-const CheckoutStatus = ({ cart, setCart }) => {
+const CheckoutStatus = () => {
     const navigate = useNavigate();
     const [countdown, setCountdown] = useState(10);
+    const cart = localStorage.getItem('cart');
 
     useEffect(() => {
         // Set cart as an empty array
-        setCart([]);
-
+        localStorage.setItem('cart', JSON.stringify([]));
+        
         // Start countdown timer
         const timer = setInterval(() => {
             setCountdown((prevCountdown) => prevCountdown - 1);
@@ -26,7 +27,7 @@ const CheckoutStatus = ({ cart, setCart }) => {
             clearInterval(timer);
             clearTimeout(redirectTimer);
         };
-    }, [setCart, navigate, countdown]);
+    }, [navigate, countdown, cart]);
 
     return (
         <div className='checkoutStatus'>

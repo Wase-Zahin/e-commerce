@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import placeholder from '../../images/user-placeholder.png';
 import './Profile.css';
+import axios from 'axios';
 
 const Profile = () => {
   const [username, setUsername] = useState('');
@@ -28,9 +30,25 @@ const Profile = () => {
     setProfilePicture(URL.createObjectURL(e.target.files[0]));
   };
 
-  const handleUsernameSave = () => {
-    // handle save username logic
-  };
+  const handleUsernameSave = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:8000/api/users/update_username/",
+        { username: username },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true,
+        }
+      )
+      .then((response) => console.log(response.data))
+      .catch((error) => {
+        console.error(error);
+        // Handle errors
+      });
+  }
 
   const handlePasswordSave = () => {
     // handle save password logic
@@ -44,13 +62,33 @@ const Profile = () => {
     <div className="profile-container">
       <h2>Edit Profile</h2>
       <div className="profile-section">
-        <label htmlFor="username">Username:</label>
-        <input type="text" id="username" value={username} onChange={handleUsernameChange} />
-        <button className="save-button" onClick={handleUsernameSave}>Save</button>
+        <label htmlFor="profile-picture">Profile Picture:</label>
+        <div className="profile-picture" style={{ backgroundImage: `url(${profilePicture})` }}>
+          {profilePicture ? (
+            // Show the user's profile picture
+            <img src={profilePicture} alt="Profile" />
+          ) : (
+            // Show the user icon if there is no profile picture
+            <img src={placeholder} className="placeholder" />
+          )}
+          <input type="file" id="profile-picture" accept="image/*" onChange={handleProfilePictureChange} />
+          <label htmlFor="profile-picture">
+            <span>Choose File</span>
+          </label>
+        </div>
+        <button className="save-button" onClick={handleProfilePictureSave}>Save</button>
       </div>
+      <div className='line'></div>
+
+
+      <form onSubmit={handleUsernameSave} className="profile-section">
+        <label htmlFor="username">Username:</label>
+        <input type="text" name='username' id="username" value={username} onChange={handleUsernameChange} />
+        <button className="save-button">Save</button>
+      </form>
 
       <div className='line'></div>
-      
+
       <div className="profile-section">
         <label htmlFor="current-password">Current Password:</label>
         <input type="password" id="current-password" value={currentPassword} onChange={handleCurrentPasswordChange} />
@@ -65,20 +103,24 @@ const Profile = () => {
         <button className="save-button" onClick={handlePasswordSave}>Save</button>
       </div>
 
-      <div className='line'></div>
-
-      <div className="profile-section">
-        <label htmlFor="profile-picture">Profile Picture:</label>
-        <div className="profile-picture" style={{ backgroundImage: `url(${profilePicture})` }}>
-          <input type="file" id="profile-picture" accept="image/*" onChange={handleProfilePictureChange} />
-          <label htmlFor="profile-picture">
-            <span>Choose File</span>
-          </label>
-        </div>
-        <button className="save-button" onClick={handleProfilePictureSave}>Save</button>
-      </div>
     </div>
   );
 };
+
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
 
 export default Profile;

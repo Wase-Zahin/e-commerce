@@ -44,6 +44,22 @@
     width: 24px;
 }
 
+.cartIconWrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.cartCount {
+    position: absolute;
+    top: -50%;
+    right: -70%;
+    background-color: #E14D2A;
+    border-radius: 50%;
+    text-align: center;
+    height: 24px;
+    width: 24px;
+    padding: 4px;
+}
 
 .dropdownMenu {
     background-color: black;

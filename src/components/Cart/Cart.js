@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useEffect } from "react";
+import './Cart.css'
 import CartItem from "../CartItem/CartItem";
 import OrderSummary from "../orderSummary/orderSummary";
 
-const ShopWrapper = styled.div`
-    padding: 2rem 0;
-    background-color: #EAEAEA;
-    margin: auto;
-`
-
-const Cart = ({ total, setTotal }) => {
-    const [cart, setCart] = useState([]);
-    console.log(localStorage.getItem('cart'));
+const Cart = ({ cart, setCart, total, setTotal }) => {
 
     useEffect(() => {
         const storedCart = localStorage.getItem('cart');
@@ -20,7 +12,6 @@ const Cart = ({ total, setTotal }) => {
         }
     }, []);
     
-
     const cartItems = cart.map((cartItem) => {
         return (
             <CartItem
@@ -34,7 +25,7 @@ const Cart = ({ total, setTotal }) => {
     })
 
     return (
-        <ShopWrapper>
+        <div className="shopWrapper">
             {cart.length > 0 ?
                 <div className="cartItemsDiv">
                     <div>
@@ -46,10 +37,10 @@ const Cart = ({ total, setTotal }) => {
                         setTotal={setTotal}>
                     </OrderSummary>
                 </div> :
-                <div className="emptyBag">
-                    <h3 className="conditionalDiv">Your bag is empty!</h3>
+                <div className="emptyCart">
+                    <h3 className="conditionalDiv">Your cart is empty!</h3>
                 </div>}
-        </ShopWrapper>
+        </div>
     )
 }
 

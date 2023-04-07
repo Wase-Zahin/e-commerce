@@ -42,13 +42,14 @@
 }
 
 .search-results a {
-    background-color: lightgray;
+    background-color: #000000;
+    border: 1px solid lightgray;
 }
 
 .search-results p {
     border: 1px solid black;
     padding: 12px 1rem;
-    color: black;
+    color: #fff;
     z-index: 999;
     cursor: pointer;
 }

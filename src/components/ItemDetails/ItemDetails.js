@@ -3,30 +3,30 @@ import { useParams } from 'react-router-dom';
 import "./ItemDetails.css";
 import axios from "axios";
 
-const Item = ({ Authenticated, setAuthenticated }) => {
-    const [cart, setCart] = useState([]);
+const Item = ({ cart, setCart, Authenticated, setAuthenticated }) => {
     const [loginprompt, setLoginprompt] = useState("");
     const { id } = useParams();
+    const [message, setMessage] = useState("");
     const [item, setItem] = useState([]);
 
     useEffect(() => {
         checkLoggedIn();
         fetchItem();
         setCart(loadCartFromLocalStorage());
-    }, [Authenticated]);
+    }, [Authenticated, id]);
 
     const loadCartFromLocalStorage = () => {
         const storedCart = localStorage.getItem("cart");
         if (storedCart) {
-          try {
-            const parsedCart = JSON.parse(storedCart);
-            return Array.isArray(parsedCart) ? parsedCart : [];
-          } catch (error) {
-            console.error("Failed to parse stored cart:", error);
-          }
+            try {
+                const parsedCart = JSON.parse(storedCart);
+                return Array.isArray(parsedCart) ? parsedCart : [];
+            } catch (error) {
+                console.error("Failed to parse stored cart:", error);
+            }
         }
         return [];
-      };
+    };
 
     const checkLoggedIn = async () => {
         axios.get("http://localhost:8000/api/users/check_logged_in/", {
@@ -62,13 +62,11 @@ const Item = ({ Authenticated, setAuthenticated }) => {
                 // Set cart to local storage with the updated state
                 localStorage.setItem("cart", JSON.stringify(newCart));
             }
+            setMessage("Your Item has been added to cart!");
         } else {
             setLoginprompt("Please login to add items to cart");
         }
     };
-
-
-
 
     const fetchItem = async () => {
         const data = await fetch(
@@ -92,6 +90,7 @@ const Item = ({ Authenticated, setAuthenticated }) => {
                     <p>{item.description}</p>
                     <button onClick={addToCart} className="Btn">Add To Cart</button>
                     <p style={{ textAlign: "center", color: "red" }}>{loginprompt}</p>
+                    <p style={{ textAlign: "center", color: "#03C988" }}>{message}</p>
                 </div>
             </div>
         </div>
