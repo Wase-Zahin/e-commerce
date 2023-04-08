@@ -34,7 +34,7 @@ const Profile = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:8000/api/users/update_username/",
+      .post("https://zahin0100.pythonanywhere.com/api/users/update_username/",
         { username: username },
         {
           headers: {

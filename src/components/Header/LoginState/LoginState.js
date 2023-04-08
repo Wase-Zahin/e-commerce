@@ -12,7 +12,7 @@ export default function LoginState({ Authenticated, setAuthenticated }) {
 
     // to check if the user is logged in and render it in the header
     const checkLoggedIn = async () => {
-        axios.get("http://localhost:8000/api/users/check_logged_in/", {
+        axios.get("https://zahin0100.pythonanywhere.com/api/users/check_logged_in/", {
             withCredentials: true,
         })
             .then((res) => {
@@ -47,7 +47,7 @@ export default function LoginState({ Authenticated, setAuthenticated }) {
     }, [isOpen, Authenticated, storedUsername]);
 
     const handleLogout = () => {
-        axios.post("http://localhost:8000/api/users/logout/", {}, { withCredentials: true })
+        axios.post("https://zahin0100.pythonanywhere.com/api/users/logout/", {}, { withCredentials: true })
             .then((res) => {
                 console.log(res.data);
             })

@@ -16,7 +16,7 @@ const SignUp = () => {
     const csrftoken = getCookie('csrftoken');
 
     // Send a POST request to the server with the CSRF token in the headers
-    const response = await fetch("http://localhost:8000/api/users/signup/", {
+    const response = await fetch("https://zahin0100.pythonanywhere.com/api/users/signup/", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

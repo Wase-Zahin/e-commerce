@@ -23,7 +23,7 @@ const Header = ({ Authenticated, setAuthenticated, items, isLoading }) => {
     }
 
     const handleLogout = () => {
-        axios.post("http://localhost:8000/api/users/logout/", {}, { withCredentials: true })
+        axios.post("https://zahin0100.pythonanywhere.com/api/users/logout/", {}, { withCredentials: true })
             .then((res) => {
                 console.log(res.data);
             })

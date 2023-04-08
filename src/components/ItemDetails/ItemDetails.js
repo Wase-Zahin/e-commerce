@@ -29,7 +29,7 @@ const Item = ({ cart, setCart, Authenticated, setAuthenticated }) => {
     };
 
     const checkLoggedIn = async () => {
-        axios.get("http://localhost:8000/api/users/check_logged_in/", {
+        axios.get("https://zahin0100.pythonanywhere.com/api/users/check_logged_in/", {
             withCredentials: true,
         })
             .then((res) => {
