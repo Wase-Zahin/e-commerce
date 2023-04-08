@@ -35,7 +35,7 @@ export default function SearchBar({ items, isLoading }) {
     // these 2 functions are used to filter the products for the search
     const handleSearchChange = event => {
         setSearchQuery(event.target.value);
-        console.log(filteredResults, products);
+        setIsSearchBoxActive(true)
     }
 
     useEffect(() => {
@@ -64,8 +64,6 @@ export default function SearchBar({ items, isLoading }) {
                 placeholder="Search for products..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-
-                onClick={() => setIsSearchBoxActive(true)}
             />
             <div className="searchIconWrapper">
                 <AiOutlineSearch className="searchIcon" />
@@ -75,9 +73,8 @@ export default function SearchBar({ items, isLoading }) {
                     {
                         (filteredResults.map(product => {
                             return (
-                                <Link to={`/shop/${product.id}`}>
+                                <Link to={`/shop/${product.id}`} key={product.id}>
                                     <p
-                                        key={product.id}
                                         onClick={handleSearch}>
                                         {product.title}
                                     </p>

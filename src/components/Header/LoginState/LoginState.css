@@ -18,6 +18,7 @@
 
 .dropdown-menu {
     position: absolute;
+    width: 100%;
     top: 100%;
     left: 0;
     z-index: 100;
@@ -34,4 +35,9 @@
 
 .dropdown-menu-item:hover {
     background-color: #ddd;
+}
+
+.userIcon {
+    color: rgb(255, 196, 0);
+    font-size: 1.4rem;
 }

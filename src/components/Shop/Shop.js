@@ -1,30 +1,44 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import "./Shop.css";
 
-const Shop = ({ items, setItems, isLoading, setIsLoading }) => {
+const Shop = ({ items, isLoading }) => {
+    const [shuffledItems, setShuffledItems] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
+
     useEffect(() => {
-        fetchItems();
-    }, []);
+        // Shuffle items array
+        const shuffled = [...items].sort(() => 0.5 - Math.random());
+        setShuffledItems(shuffled);
+        console.log(shuffledItems)
+    }, [items]);
 
-    const fetchItems = async () => {
-        const data = await fetch(
-            'https://fakestoreapi.com/products'
-        );
-
-        const items = await data.json();
-        if (items) {
-            setIsLoading(false);
-            setItems(items);
-        }
-        else setIsLoading(true);
-    }
+    const categories = [...new Set(items.map((item) => item.category))];
 
     return (
         <div className="shopWrapper">
-            <div className='shopContainer'>
+            <div className="categoryWrapper">
+      <div className="categoryLine"></div>
+      <div className="categoryContent">
+        <h3 className="categoryText">Categories:</h3>
+        <select
+          className="categories"
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="">All</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="categoryLine"></div>
+    </div>
 
+            <div className='shopContainer'>
                 {isLoading ?
                     Array(20).fill().map((_, index) => (
                         <div key={index}>
@@ -40,7 +54,7 @@ const Shop = ({ items, setItems, isLoading, setIsLoading }) => {
                             </Link>
                         </div>
                     ))
-                    : (items.map(item => (
+                    : (shuffledItems.filter(item => selectedCategory === '' || item.category === selectedCategory).map(item => (
                         <div key={item.id}>
                             <Link to={`/shop/${item.id}`}>
                                 <div className="shopImgDiv">
@@ -56,7 +70,6 @@ const Shop = ({ items, setItems, isLoading, setIsLoading }) => {
                             </Link>
                         </div>
                     )))}
-
             </div>
         </div>
     )

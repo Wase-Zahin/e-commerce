@@ -1,0 +1,18 @@
+.checkoutStatus {
+    height: 100vh;
+}
+
+.checkoutMessage {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.doneIcon {
+    font-size: 3rem;
+    color: green;
+}

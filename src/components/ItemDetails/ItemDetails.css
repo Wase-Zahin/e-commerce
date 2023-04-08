@@ -1,3 +1,19 @@
+.ShopWrapper {
+    padding: 2.5rem;
+    background-color: #EAEAEA;
+}
+
+.ShopContainer {
+    display: grid;
+    margin: auto;
+    max-width: 1200px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    padding: 1.5rem;
+    gap: 1rem;
+    background-color: white;
+    box-shadow: 2.5px 1px 5px #393E46;
+}
+
 .imgDiv {
     max-width: 300px;
     max-height: 300px;
@@ -5,6 +21,8 @@
 }
 
 .imgDiv img {
+    max-width: 300px;
+    max-height: 300px;
     height: 100%;
     width: 100%;
 }
