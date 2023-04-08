@@ -25,9 +25,6 @@ SECRET_KEY = 'django-insecure-ld*g4m0%xg1vu5dx5_ym#*b#d*v9)7v++m8ij=io_y$jicg$i4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -97,9 +94,6 @@ DATABASES = {
 ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',  # React default port = 3000  # Django default port = 8000
-)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
