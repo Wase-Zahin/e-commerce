@@ -7,7 +7,6 @@ from .serializers import UserSerializer
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login, logout
 from django.middleware.csrf import get_token
-from .models import Payment
 import json
 import stripe
 from django.conf import settings
@@ -80,7 +79,6 @@ class LogoutView(viewsets.ModelViewSet):
 
 
 stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
-
 
 @csrf_exempt
 def create_payment(request):

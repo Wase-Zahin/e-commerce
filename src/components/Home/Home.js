@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import "./Home.css";
 import wave from "../../images/wave.svg";
+import vector from "../../images/vector.jpg";
 
 const Home = () => {
     return (
@@ -15,11 +16,10 @@ const Home = () => {
                             </div>
                         </Link>
                     </div>
-                    <div className='bg-img'>
-                    </div>
+                    <img src={vector} className='bg-img' alt='vector background'></img>
                 </div>
             </div>
-            <img src={wave} alt="wave background image"></img>
+            <img src={wave} alt="wave background"></img>
         </div>
     )
 }

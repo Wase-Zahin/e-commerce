@@ -4,8 +4,6 @@ import loginIcon from "../../images/6681204.png";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,14 +39,6 @@ const SignUp = () => {
     }
   };
 
-  const handleFirstNameChange = (event) => {
-    setFirstName(event.target.value);
-  };
-
-  const handleLastNameChange = (event) => {
-    setLastName(event.target.value);
-  };
-
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
@@ -66,23 +56,6 @@ const SignUp = () => {
       <form method="POST" onSubmit={handleSignUp} className="login-box">
         <img className="login-icon" src={loginIcon} alt="login-icon" />
         <h1>Sign Up</h1>
-        <input
-          placeholder="First Name"
-          name="first_name"
-          id="first_name"
-          value={firstName}
-          onChange={handleFirstNameChange}
-          required
-        />
-
-        <input
-          placeholder="Last Name"
-          name="last_name"
-          id="last_name"
-          value={lastName}
-          onChange={handleLastNameChange}
-          required
-        />
 
         <input
           placeholder="Username"

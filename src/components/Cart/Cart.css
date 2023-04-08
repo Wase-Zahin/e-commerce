@@ -1,3 +1,9 @@
+.shopWrapper {
+    padding: 2rem 0;
+    background-color: #EAEAEA;
+    margin: auto;
+}
+
 .cartItemsDiv {
     margin: auto;
     display: grid;
@@ -7,14 +13,13 @@
     gap: 1rem;
 }
 
-.emptyBag {
-    height: 500px;
+.emptyCart {
+    height: 80vh;
 }
 
 .conditionalDiv {
-    height: fit-content;
-    width: fit-content;
-    margin: auto;
+    position: absolute;
+    left: 50%; top: 50%;
 }
 
 @media screen and (max-width: 750px) {

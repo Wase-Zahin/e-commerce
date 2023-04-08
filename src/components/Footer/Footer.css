@@ -4,7 +4,11 @@
     color: white;
     padding: 2.5rem;
     gap: 2.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.mail {
+    width: 600px;
 }
 
 .company,
@@ -54,5 +58,18 @@
     .newsletter {
         height: fit-content;
         width: fit-content;
+    }
+}
+
+@media screen and (max-width: 762px) {
+    .mail {
+        width: auto;
+    }
+}
+
+
+@media screen and (min-width: 999px) {
+    .mail {
+        width: auto;
     }
 }

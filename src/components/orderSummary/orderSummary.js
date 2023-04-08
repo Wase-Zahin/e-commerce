@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "./orderSummary.css";
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,7 @@ const OrderSummary = ({ cart, total, setTotal }) => {
     const cartTotal = () => {
         let total = 0;
         cart.map((cartItem) => {
-            total += cartItem.price * cartItem.counter;
+            total += (cartItem.price * cartItem.counter) + 10;
             return setTotal(total);
         })
     };

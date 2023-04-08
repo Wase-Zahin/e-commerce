@@ -1,67 +1,127 @@
 .cartItems {
-    padding: 1.5rem;
-    height: fit-content;
-    background-color: white;
-    border: 1px solid#c2c2c2;
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: 1fr 2fr;
+  padding: 1.5rem;
+  height: fit-content;
+  background-color: white;
+  border: 1px solid#c2c2c2;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr 2fr;
 }
 
 .cartItems img {
-    margin: auto;
+  margin: auto;
 }
 
 .pic {
-    height: 175px;
-    width: 175px;
+  height: 175px;
+  width: 175px;
 }
 
 .itemDetailsDiv {
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
-  }
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
 
-  .itemTitle {
-    margin: 0 auto;
-  }
-  
-  .itemDetails {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: space-around;
-  }
+.removeIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 
-  
+.itemTitle {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.itemDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: space-around;
+}
+
 .cartPriceQntt {
-    display: flex;
-    justify-content: space-between;
-  }
+  display: flex;
+  justify-content: space-between;
+}
 
-  
 .quantity input {
-    width: 45px;
-  }
-  
-  .quantity {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  
-  }
+  width: 45px;
+  border: none;
+  text-align: center;
+  width: 32px;
+}
+
+.quantity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.quantityWrapper {
+  border: 0.5px solid lightgray;
+  padding: 0.8rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.removeIcon {
+  height: 20px;
+  width: 20px;
+  color: red;
+  cursor: pointer;
+}
+
+.removeIcon:hover, .minusIcon:hover, .plusIcon:hover {
+  transform: scale(1.1);
+}
+
+.minusIcon {
+  color: rgb(255, 74, 74);
+  cursor: pointer;
+}
+
+.plusIcon {
+  cursor: pointer;
+}
+
+.iconInput {
+  display: flex;
+}
+
 @media screen and (max-width: 550px) {
-    .pic {
-        height: 75px;
-        width: 75px;
-    }
+  .pic {
+    height: 75px;
+    width: 75px;
+  }
 }
 
 @media screen and (max-width: 680px) {
-    .pic {
-        height: 110px;
-        width: 110px;
-    }
+  .pic {
+    height: 110px;
+    width: 110px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .itemDetailsDiv {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .cartPriceQntt {
+    flex-direction: column;
+    gap: 0.8rem;
+    width: fit-content;
+  }
+
+  .quantityWrapper {
+    padding: 0.6rem;
+  }
 }

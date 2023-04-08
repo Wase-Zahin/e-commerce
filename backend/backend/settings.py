@@ -75,13 +75,11 @@ TEMPLATES = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
 
 AUTH_USER_MODEL =  'backend_logic.CustomUser'
 WSGI_APPLICATION = 'backend.wsgi.application'
-
 
 STRIPE_TEST_PUBLISHABLE_KEY = 'pk_test_51Mk0utA80Tij0bnPXMSHBBOBk5CYgfdgSv0aMyzNQIIL5nucQLtSZUTFeX1PedqFOjD34KnrH8gEYN3i7fdCc7cH00Eawy3yUL'
 STRIPE_TEST_SECRET_KEY = 'sk_test_51Mk0utA80Tij0bnPreQVInQBupOFQ9bMnqBukVfv8L7Umb1koMcbpcXlP5OEI756vtsPiIEuOTRzfZa9Yy0UpCYl002KFOgKWc'
@@ -96,6 +94,7 @@ DATABASES = {
     }
 }
 
+ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (

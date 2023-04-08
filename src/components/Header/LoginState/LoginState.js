@@ -1,11 +1,11 @@
 import './LoginState.css';
 import React from 'react'
-import { TfiUser } from 'react-icons/tfi';
+import { FaRegUser } from 'react-icons/fa';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-export default function LoginState({ Authenticated, setAuthenticated}) {
+export default function LoginState({ Authenticated, setAuthenticated }) {
     const [isOpen, setIsOpen] = useState(false);
     const buttonRef = useRef(null);
     const storedUsername = localStorage.getItem('username');
@@ -78,7 +78,7 @@ export default function LoginState({ Authenticated, setAuthenticated}) {
     return (
         <div className="login_state">
             <button onClick={handleDropdown} className="dropdown-button" ref={buttonRef} >
-                <TfiUser />
+                <FaRegUser className='userIcon' />
                 {Authenticated ? storedUsername : "Login"}
             </button>
 
