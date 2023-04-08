@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,21 +77,11 @@ TEMPLATES = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
-}
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'USER_ID_CLAIM': 'user_id',
 }
 
 AUTH_USER_MODEL =  'backend_logic.CustomUser'
 WSGI_APPLICATION = 'backend.wsgi.application'
-
 
 STRIPE_TEST_PUBLISHABLE_KEY = 'pk_test_51Mk0utA80Tij0bnPXMSHBBOBk5CYgfdgSv0aMyzNQIIL5nucQLtSZUTFeX1PedqFOjD34KnrH8gEYN3i7fdCc7cH00Eawy3yUL'
 STRIPE_TEST_SECRET_KEY = 'sk_test_51Mk0utA80Tij0bnPreQVInQBupOFQ9bMnqBukVfv8L7Umb1koMcbpcXlP5OEI756vtsPiIEuOTRzfZa9Yy0UpCYl002KFOgKWc'
