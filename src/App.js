@@ -21,10 +21,15 @@ const App = () => {
   const [username, setUsername] = useState("");
   const [totalCartItems, setTotalCartItems] = useState(0);
 
+  const storedCart = localStorage.getItem('cart') || [];
+
   useEffect(() => {
-    const totalItems = cart.reduce((total, item) => total + item.counter, 0);
+    // localStorage.setItem(JSON.stringify('cart', storedCart));
+    setCart(JSON.parse(storedCart));
+    console.log(cart);
+    const totalItems = cart?.reduce((total, item) => total + item.counter, 0);
     setTotalCartItems(totalItems);
-  }, [cart]);
+  }, []);
 
   useEffect(() => {
     fetchItems();
