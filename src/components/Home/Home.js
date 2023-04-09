@@ -2,8 +2,30 @@ import { Link } from 'react-router-dom';
 import "./Home.css";
 import wave from "../../images/wave.svg";
 import vector from "../../images/vector.jpg";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Home = () => {
+    const [loggedIn, setLoggedIn] = useState('');
+    const [Authenticated, setAuthenticated] = useState();
+    useEffect(() => {
+        checkLoggedIn();
+    });
+
+    const checkLoggedIn = async () => {
+        axios.get("https://zahin0100.pythonanywhere.com/api/users/check_logged_in/", {
+            withCredentials: true,
+        })
+            .then((res) => {
+                console.log(res.data)
+                setLoggedIn(res.data.loggedIn);
+                if (res.data.logged_in === true)
+                    setAuthenticated(true);
+                else setAuthenticated(false);
+            })
+            .catch((err) => { console.log(err) });
+    };
+
     return (
         <div className='full-bg'>
             <div className='background'>
