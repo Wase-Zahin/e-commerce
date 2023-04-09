@@ -8,10 +8,9 @@ import Logo from "../../images/logo.png";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Header = ({ Authenticated, setAuthenticated, items, isLoading }) => {
+const Header = ({ cart, Authenticated, setAuthenticated, items, isLoading }) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [totalCartItems, setTotalCartItems] = useState(0);
-    const cart = JSON.parse(localStorage.getItem('cart'));
 
     useEffect(() => {
         const totalItems = cart.reduce((total, item) => total + item.counter, 0);

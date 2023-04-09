@@ -57,6 +57,7 @@ const App = () => {
         setUsername={setUsername}
         items={items}
         isLoading={isLoading}
+        cart={cart}
         totalCartItems={totalCartItems}>
       </Header>
 
