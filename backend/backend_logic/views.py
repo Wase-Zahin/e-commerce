@@ -38,8 +38,7 @@ class SignUpView(viewsets.ModelViewSet):
         csrf_token = get_token(request)
         response = JsonResponse({'message': 'Success'})
         # Set the 'csrftoken' cookie in the response
-        response.set_cookie('csrftoken', csrf_token,
-                            httponly=True, samesite='Strict')
+        response.set_cookie('csrftoken', csrf_token)
 
         # Return the response to the client
         return response
