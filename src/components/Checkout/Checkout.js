@@ -56,7 +56,7 @@ const Checkout = ({ total }) => {
     const [clientSecret, setClientSecret] = useState(null);
 
     const fetchPaymentIntent = async () => {
-        const response = await fetch('http://127.0.0.1:8000/api/create_payment/');
+        const response = await fetch('https://zahin0100.pythonanywhere.com/api/create_payment/');
         const { client_secret } = await response.json();
         setClientSecret(client_secret);
     };
