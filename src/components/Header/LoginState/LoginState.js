@@ -98,9 +98,6 @@ export default function LoginState({ Authenticated, setAuthenticated }) {
                     <Link style={{ color: "white" }} to="/signup">
                         <button onClick={handleDropdown} className="link_item">Signup</button>
                     </Link>
-                    <Link style={{ color: "white" }} to="/login">
-                        <button className="link_item" onClick={() => { handleLogout(); handleDropdown() }}>Logout</button>
-                    </Link>
                 </div>
             )}
         </div>
