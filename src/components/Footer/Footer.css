@@ -4,6 +4,8 @@
     color: white;
     padding: 2.5rem;
     gap: 2.5rem;
+    place-items: center;
+    justify-items: center;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 

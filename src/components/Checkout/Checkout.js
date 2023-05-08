@@ -43,7 +43,7 @@ const CheckoutForm = ({ total }) => {
     return (
         <form className='checkoutForm' onSubmit={handleSubmit}>
             <PaymentElement />
-            <button className='Btn' disabled={isSubmitting}>
+            <button className='Btn' disabled={!total || isSubmitting}>
                 {isSubmitting ? `Pay $${total}...` : `Pay $${total}`}
             </button>
             {isSubmitted && <p className='SuccessMsg'>Payment successful!</p>}

@@ -1,0 +1,30 @@
+.order-details__item-container {
+    display: flex;
+    flex: 1;
+}
+
+.order-details__item-image {
+    margin-right: 20px;
+}
+
+.order-details__item-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.order-details__item-name {
+    color: #212121;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.order-details__item-price {
+    color: #757575;
+    font-size: 16px;
+}
+
+.order-details__item-quantity {
+    color: #757575;
+    font-size: 14px;
+}
