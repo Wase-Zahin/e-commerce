@@ -19,24 +19,24 @@ const Shop = ({ items, isLoading }) => {
     return (
         <div className="shopWrapper">
             <div className="categoryWrapper">
-      <div className="categoryLine"></div>
-      <div className="categoryContent">
-        <h3 className="categoryText">Categories:</h3>
-        <select
-          className="categories"
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="">All</option>
-          {categories.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="categoryLine"></div>
-    </div>
+                <div className="categoryLine"></div>
+                <div className="categoryContent">
+                    <h3 className="categoryText">Categories:</h3>
+                    <select
+                        className="categories"
+                        value={selectedCategory}
+                        onChange={(e) => setSelectedCategory(e.target.value)}
+                    >
+                        <option value="">All</option>
+                        {categories.map((category) => (
+                            <option key={category} value={category}>
+                                {category}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="categoryLine"></div>
+            </div>
 
             <div className='shopContainer'>
                 {isLoading ?

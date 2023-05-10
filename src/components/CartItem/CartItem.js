@@ -34,15 +34,15 @@ const CartItem = ({ cart, setCart, cartItem, id }) => {
 
     const decrementOnClick = (id) => {
         const newCart = cart.map((cartItem) => {
-          if (cartItem.id === id) {
-            const newCounter = cartItem.counter > 0 ? cartItem.counter - 1 : 0;
-            return { ...cartItem, counter: newCounter };
-          } else return cartItem;
+            if (cartItem.id === id) {
+                const newCounter = cartItem.counter > 0 ? cartItem.counter - 1 : 0;
+                return { ...cartItem, counter: newCounter };
+            } else return cartItem;
         });
         setCart(newCart);
         localStorage.setItem("cart", JSON.stringify(newCart));
-      }
-      
+    }
+
 
     return (
         <div className="cartItems">
