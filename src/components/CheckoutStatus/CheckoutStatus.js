@@ -9,18 +9,6 @@ const CheckoutStatus = () => {
     const cart = localStorage.getItem('cart');
 
     useEffect(() => {
-        // Get existing ordered items from local storage
-        const existingOrderedItems = localStorage.getItem('orderedItems') || [];
-
-        // Add cart items to existing ordered items
-        const updatedOrderedItems = [...existingOrderedItems, ...cart];
-
-        // Save updated ordered items to local storage
-        localStorage.setItem('orderedItems', JSON.stringify(updatedOrderedItems));
-
-
-
-
         // Set cart as an empty array
         localStorage.setItem('cart', JSON.stringify([]));
 
